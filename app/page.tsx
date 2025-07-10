@@ -321,7 +321,7 @@ Representamos causas tanto en el fuero provincial como federal. Desde nuestra ex
                 <CardContent className="p-0">
                   <div className="relative overflow-hidden rounded-t-xl">
                     <Image
-                      src="/images/roque-Navarrete.jpg"
+                      src="/images/roque-navarrete.jpg"
                       alt="Roque Navarro - Tax, Civil & Administrative Law Specialist"
                       width={400}
                       height={500}
