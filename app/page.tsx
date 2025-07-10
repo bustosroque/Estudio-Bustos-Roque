@@ -162,7 +162,14 @@ export default function EstudioJuridicoLanding() {
                 isVisible ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
               }`}
             >
-              <div className="inline-block p-8 rounded-3xl backdrop-blur-xl bg-white/5 border border-white/10 shadow-2xl">
+              <div
+                className="inline-block p-8 rounded-3xl backdrop-blur-xl bg-white/5 border border-white/10 shadow-2xl"
+                style={{
+                  backgroundImage: "url('/fondo.png')",
+                  backgroundSize: 'cover',
+                  backgroundPosition: 'center',
+                }}
+              >
                 <Image
                   src="/images/logo-transparente.png"
                   alt="Estudio Jurídico Bustos & Roque"
@@ -262,10 +269,13 @@ export default function EstudioJuridicoLanding() {
             <div className="inline-block backdrop-blur-xl bg-white/5 border border-white/10 rounded-2xl px-8 py-4 mb-8">
               <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-yellow-400">Sobre Nosotros</h2>
             </div>
-            <p className="text-xl md:text-2xl text-gray-200 max-w-3xl mx-auto leading-relaxed">
-              Más de 12 años de experiencia conjunta defendiendo los derechos de nuestros clientes con dedicación y
-              profesionalismo
-            </p>
+            <div className="text-xl md:text-2xl text-gray-200 max-w-3xl mx-auto leading-relaxed whitespace-pre-line">
+              {`Somos un equipo de abogados asociados y egresados de la Facultad de Derecho de la Universidad Nacional de Córdoba, con más de 14 años de trayectoria en el ejercicio de la profesión. 
+Nos especializamos en distintas materias, específicamente en derecho comercial, derecho societario, derecho tributario-aduanero, derecho constitucional, derecho administrativo. Asimismo, nos dedicamos a la representación administrativa y judicial de obras sociales y empresas de medicina prepaga, utilizando la conciliación como herramienta primordial para la resolución de conflictos en etapa administrativa a los fines de disminuir la judicialidad.
+Brindamos atención integral y, mediante estrategias legales, priorizamos optimizar los recursos económicos y el capital de la empresa, evitando la litigiosidad. 
+Ofrecemos un servicio personalizado y acorde a cada empresa, escuchando las necesidades de nuestros representados y en base a ello, planteamos los objetivos para su cumplimiento, tanto en corto, mediano y a largo plazo. 
+Representamos causas tanto en el fuero provincial como federal. Desde nuestra experiencia, estamos convencidos que podemos lograr la reducción de la gran cantidad de amparos de salud que se encuentran actualmente en trámite en contra de esta empresa, evitando así un dispendio jurisdiccional innecesario que repercute en el pago de prestaciones onerosas y gastos de juicio innecesario, lo que muchas veces pone en jaque la estabilidad financiera de la empresa.`}
+            </div>
           </div>
 
           {/* Lawyers Grid */}
@@ -305,21 +315,21 @@ export default function EstudioJuridicoLanding() {
               </Card>
             </div>
 
-            {/* Roque Navarrete */}
+            {/* Roque Navarro */}
             <div className="group">
               <Card className="backdrop-blur-xl bg-white/5 border border-white/10 hover:bg-white/10 transition-all duration-500 transform hover:scale-105 hover:-translate-y-2 shadow-2xl">
                 <CardContent className="p-0">
                   <div className="relative overflow-hidden rounded-t-xl">
                     <Image
-                      src="/images/roque-navarrete.jpg"
-                      alt="Roque Navarrete - Tax, Civil & Administrative Law Specialist"
+                      src="/images/roque-Navarrete.jpg"
+                      alt="Roque Navarro - Tax, Civil & Administrative Law Specialist"
                       width={400}
                       height={500}
                       className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#153F35]/80 to-transparent" />
                     <div className="absolute bottom-6 left-6 right-6">
-                      <h3 className="text-3xl font-serif font-bold text-yellow-400 mb-2">Roque Navarrete</h3>
+                      <h3 className="text-3xl font-serif font-bold text-yellow-400 mb-2">Roque Navarro</h3>
                       <p className="text-yellow-200 font-medium">Especialista en Derecho Tributario y Civil</p>
                     </div>
                   </div>
@@ -364,7 +374,7 @@ export default function EstudioJuridicoLanding() {
               {
                 icon: <Shield className="h-10 w-10" />,
                 title: "Amparos de Salud",
-                description: "Protección de derechos fundamentales en materia de salud y seguridad social.",
+                description: "Protección de derechos fundamentales en materia de salud y seguridad social. Representación administrativa y judicial de obras sociales y empresas de medicina prepaga, priorizando la conciliación para evitar litigios innecesarios.",
                 color: "from-slate-600 to-slate-700",
               },
               {
@@ -572,6 +582,10 @@ export default function EstudioJuridicoLanding() {
                 </CardContent>
               </Card>
             </div>
+          </div>
+          {/* Teléfonos y email agregados al final de la sección de contacto */}
+          <div className="mt-8 text-center text-lg text-gray-200 whitespace-pre-line">
+            {`Tel. 3515918047 – 3517555269\nestudiojurídicobustosroque@gmail.com`}
           </div>
         </div>
       </section>
