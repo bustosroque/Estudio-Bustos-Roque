@@ -2,9 +2,8 @@ import type { Metadata } from 'next'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'v0 App',
-  description: 'Created with v0',
-  generator: 'v0.dev',
+  title: 'Estudio Jurídico Bustos & Roque',
+  description: 'Estudio jurídico en Córdoba Capital. Especialistas en Derecho Penal, Civil, Tributario y Administrativo. Atención personalizada y excelencia profesional.',
 }
 
 export default function RootLayout({
