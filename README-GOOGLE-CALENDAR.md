@@ -11,25 +11,37 @@
    - Busca "Google Calendar API"
    - Haz clic en "Enable"
 
-### 2. Configurar Credenciales
+### 2. Configurar Service Account (Recomendado para producción)
 
 1. Ve a "APIs & Services" > "Credentials"
-2. Haz clic en "Create Credentials" > "OAuth 2.0 Client IDs"
-3. Configura la aplicación:
-   - Tipo: "Web application"
-   - Nombre: "Estudio Bustos & Roque - Booking System"
-   - URIs autorizados: `http://localhost:3000` (desarrollo) y tu dominio de producción
-   - URIs de redirección: `http://localhost:3000/api/auth/callback/google`
+2. Haz clic en "Create Credentials" > "Service Account"
+3. Completa la información:
+   - Nombre: "Estudio Bustos & Roque - Calendar Service"
+   - Descripción: "Service account para integración con Google Calendar"
+4. Haz clic en "Create and Continue"
+5. En "Grant this service account access to project":
+   - Selecciona "Editor" como rol
+   - Haz clic en "Continue"
+6. Haz clic en "Done"
 
-### 3. Variables de Entorno
+### 3. Generar y Descargar Credenciales
+
+1. En la lista de Service Accounts, haz clic en el que acabas de crear
+2. Ve a la pestaña "Keys"
+3. Haz clic en "Add Key" > "Create new key"
+4. Selecciona "JSON" y haz clic en "Create"
+5. Se descargará un archivo JSON con las credenciales
+
+### 4. Configurar Variables de Entorno
 
 Crea un archivo `.env.local` en la raíz del proyecto con:
 
 ```env
-# Google Calendar API Configuration
-GOOGLE_CLIENT_ID=tu_client_id_aqui
-GOOGLE_CLIENT_SECRET=tu_client_secret_aqui
-GOOGLE_REDIRECT_URI=http://localhost:3000/api/auth/callback/google
+# Google Calendar API Configuration - Service Account
+GOOGLE_SERVICE_ACCOUNT_EMAIL=tu-service-account@tu-proyecto.iam.gserviceaccount.com
+GOOGLE_PRIVATE_KEY="-----BEGIN PRIVATE KEY-----\nTU_PRIVATE_KEY_AQUI\n-----END PRIVATE KEY-----\n"
+GOOGLE_PROJECT_ID=tu-proyecto-id
+GOOGLE_CLIENT_ID=tu-client-id
 
 # Calendar ID del estudio (puede ser 'primary' para el calendario principal)
 GOOGLE_CALENDAR_ID=primary
@@ -41,47 +53,44 @@ STUDIO_EMAIL=estudiojuridicobustosroque@gmail.com
 NEXT_PUBLIC_APP_URL=http://localhost:3000
 ```
 
-### 4. Instalar Dependencias
+### 5. Configurar la Private Key Correctamente
+
+**IMPORTANTE**: La `GOOGLE_PRIVATE_KEY` debe estar formateada correctamente:
+
+1. Abre el archivo JSON descargado
+2. Copia el valor de `private_key`
+3. En tu `.env.local`, envuelve la private key en comillas dobles
+4. Asegúrate de que los `\n` estén presentes para los saltos de línea
+
+Ejemplo correcto:
+```env
+GOOGLE_PRIVATE_KEY="-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQC...\n-----END PRIVATE KEY-----\n"
+```
+
+### 6. Compartir Calendario con Service Account
+
+1. Ve a [Google Calendar](https://calendar.google.com/)
+2. Encuentra tu calendario en el panel izquierdo
+3. Haz clic en los 3 puntos junto al nombre del calendario
+4. Selecciona "Settings and sharing"
+5. En "Share with specific people", haz clic en "+ Add people"
+6. Agrega el email del Service Account (el valor de `GOOGLE_SERVICE_ACCOUNT_EMAIL`)
+7. Dale permisos de "Make changes to events"
+8. Haz clic en "Send"
+
+### 7. Instalar Dependencias
 
 ```bash
-npm install googleapis @google-cloud/local-auth
+npm install googleapis
 ```
 
-### 5. Configurar Autenticación
+### 8. Verificar Configuración
 
-El sistema actual está configurado para simular la integración. Para la integración completa:
-
-1. **Autenticación con Service Account** (Recomendado para producción):
-   - Crea una Service Account en Google Cloud Console
-   - Descarga el archivo JSON de credenciales
-   - Comparte el calendario con el email de la Service Account
-
-2. **Autenticación OAuth2** (Para desarrollo):
-   - Configura el flujo de OAuth2 para usuarios individuales
-
-### 6. Implementación Completa
-
-Para activar la integración real, descomenta y configura el código en `app/api/booking/route.ts`:
-
-```typescript
-import { google } from 'googleapis';
-
-// Configurar autenticación
-const auth = new google.auth.GoogleAuth({
-  keyFile: 'path/to/service-account.json', // Para Service Account
-  scopes: ['https://www.googleapis.com/auth/calendar'],
-});
-
-const calendar = google.calendar({ version: 'v3', auth });
-
-// En la función POST:
-const response = await calendar.events.insert({
-  calendarId: process.env.GOOGLE_CALENDAR_ID || 'primary',
-  resource: event,
-  conferenceDataVersion: 1,
-  sendUpdates: 'all'
-});
-```
+El sistema ahora maneja automáticamente:
+- ✅ Validación de credenciales
+- ✅ Limpieza y formateo de la private key
+- ✅ Fallback graceful si Google Calendar no está configurado
+- ✅ Mejor manejo de errores
 
 ## Características del Sistema de Reservas
 
@@ -94,7 +103,7 @@ const response = await calendar.events.insert({
 - **Modalidad presencial o llamada**
 - **Validación de fechas** (no fines de semana, no fechas pasadas)
 - **Diseño responsivo** que coincide con el sitio web
-- **Integración con Google Calendar** (preparada)
+- **Integración con Google Calendar** (configurada y funcional)
 
 ### 🎨 Diseño y UX
 
@@ -121,10 +130,11 @@ const response = await calendar.events.insert({
 - **Recordatorio 24 horas** antes de la consulta
 - **Recordatorio 30 minutos** antes de la consulta
 - **Notificación al estudio** con todos los detalles
+- **Evento en Google Calendar** con Meet automático
 
 ### 🚀 Próximos Pasos
 
-1. **Configurar Google Calendar API** siguiendo las instrucciones arriba
+1. **Configurar variables de entorno** siguiendo las instrucciones arriba
 2. **Implementar envío de emails** (puedes usar SendGrid, Resend, etc.)
 3. **Agregar validación de disponibilidad** en tiempo real
 4. **Implementar cancelación/modificación** de consultas
@@ -139,4 +149,16 @@ const response = await calendar.events.insert({
 5. Confirma la reserva
 6. Recibe confirmación por email y se agrega al calendario del estudio
 
-¡El sistema está listo para usar! Solo necesitas configurar las credenciales de Google Calendar para la integración completa. 
+### 🔧 Solución de Problemas
+
+**Error "DECODER routines::unsupported"**:
+- Verifica que la `GOOGLE_PRIVATE_KEY` esté correctamente formateada
+- Asegúrate de que los `\n` estén presentes en la private key
+- La private key debe estar envuelta en comillas dobles en el `.env.local`
+
+**Error de autenticación**:
+- Verifica que el Service Account tenga permisos en el calendario
+- Confirma que el `GOOGLE_SERVICE_ACCOUNT_EMAIL` sea correcto
+- Asegúrate de que la API de Google Calendar esté habilitada
+
+¡El sistema está listo para usar! Solo necesitas configurar las credenciales de Google Calendar siguiendo estas instrucciones. 
