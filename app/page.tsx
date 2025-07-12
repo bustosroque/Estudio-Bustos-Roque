@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent } from "@/components/ui/card";
+import { BookingForm } from "@/components/booking-form";
 import {
   Scale,
   Shield,
@@ -138,29 +139,47 @@ Enviado desde el formulario web de Bustos & Roque`;
             <span className="font-serif font-bold text-lg text-yellow-400">
               Bustos & Roque
             </span>
-            <div className="lg:hidden text-transparent">33333</div>
-            <div className="hidden md:flex items-center space-x-8">
+            <div className="md:hidden">
+              <Button
+                variant="ghost"
+                size="sm"
+                className="text-white/80 hover:text-yellow-400 hover:bg-white/10"
+                onClick={() => {
+                  // Aquí se podría implementar un menú móvil
+                  scrollToSection("reserva");
+                }}
+              >
+                Reservar
+              </Button>
+            </div>
+            <div className="hidden md:flex items-center space-x-6 lg:space-x-8">
               <button
                 onClick={() => scrollToSection("inicio")}
-                className="text-white/80 hover:text-yellow-400 transition-colors duration-300"
+                className="text-white/80 hover:text-yellow-400 transition-colors duration-300 text-sm lg:text-base"
               >
                 Inicio
               </button>
               <button
                 onClick={() => scrollToSection("nosotros")}
-                className="text-white/80 hover:text-yellow-400 transition-colors duration-300"
+                className="text-white/80 hover:text-yellow-400 transition-colors duration-300 text-sm lg:text-base"
               >
                 Nosotros
               </button>
               <button
                 onClick={() => scrollToSection("servicios")}
-                className="text-white/80 hover:text-yellow-400 transition-colors duration-300"
+                className="text-white/80 hover:text-yellow-400 transition-colors duration-300 text-sm lg:text-base"
               >
                 Servicios
               </button>
               <button
+                onClick={() => scrollToSection("reserva")}
+                className="text-white/80 hover:text-yellow-400 transition-colors duration-300 text-sm lg:text-base"
+              >
+                Reservar
+              </button>
+              <button
                 onClick={() => scrollToSection("contacto")}
-                className="text-white/80 hover:text-yellow-400 transition-colors duration-300"
+                className="text-white/80 hover:text-yellow-400 transition-colors duration-300 text-sm lg:text-base"
               >
                 Contacto
               </button>
@@ -261,10 +280,10 @@ Enviado desde el formulario web de Bustos & Roque`;
             >
               <Button
                 size="lg"
-                onClick={() => scrollToSection("contacto")}
+                onClick={() => scrollToSection("reserva")}
                 className="group bg-gradient-to-r from-yellow-500 to-yellow-600 hover:from-yellow-600 hover:to-yellow-700 text-black font-bold px-10 py-4 text-lg rounded-full transition-all duration-300 transform hover:scale-105 shadow-2xl"
               >
-                Solicitar Asesoramiento
+                Reservar Consulta
                 <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
               </Button>
               <Button
@@ -507,15 +526,38 @@ Representamos causas tanto en el fuero provincial como federal. Desde nuestra ex
                       <Button
                         variant="ghost"
                         className="text-yellow-400 hover:text-yellow-300 hover:bg-yellow-400/10 p-0 h-auto font-semibold"
-                        onClick={() => scrollToSection("contacto")}
+                        onClick={() => scrollToSection("reserva")}
                       >
-                        Conocer Más <ArrowRight className="ml-2 h-4 w-4" />
+                        Reservar Consulta <ArrowRight className="ml-2 h-4 w-4" />
                       </Button>
                     </div>
                   </div>
                 </CardContent>
               </Card>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Booking Section */}
+      <section id="reserva" className="py-16 sm:py-24 md:py-32 px-4 relative">
+        <div className="container max-w-7xl mx-auto">
+          {/* Section Header */}
+          <div className="text-center mb-12 sm:mb-16 md:mb-20">
+            <div className="inline-block backdrop-blur-xl bg-white/5 border border-white/10 rounded-2xl px-4 sm:px-6 md:px-8 py-3 sm:py-4 mb-6 sm:mb-8">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-serif font-bold text-yellow-400">
+                Reserva tu Consulta
+              </h2>
+            </div>
+            <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-200 max-w-3xl mx-auto leading-relaxed px-4">
+              Agenda una consulta personalizada con nuestros especialistas. 
+              Selecciona el tipo de consulta y te asignaremos automáticamente al abogado más adecuado.
+            </p>
+          </div>
+
+          {/* Booking Form */}
+          <div className="px-2 sm:px-4">
+            <BookingForm />
           </div>
         </div>
       </section>
