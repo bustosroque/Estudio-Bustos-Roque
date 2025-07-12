@@ -1,12 +1,12 @@
-"use client"
+"use client";
 
-import type React from "react"
-import { useState, useEffect } from "react"
-import Image from "next/image"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Textarea } from "@/components/ui/textarea"
-import { Card, CardContent } from "@/components/ui/card"
+import type React from "react";
+import { useState, useEffect } from "react";
+import Image from "next/image";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Card, CardContent } from "@/components/ui/card";
 import {
   Scale,
   Shield,
@@ -22,34 +22,57 @@ import {
   ArrowRight,
   CheckCircle,
   Star,
-} from "lucide-react"
+} from "lucide-react";
 
 export default function EstudioJuridicoLanding() {
   const [formData, setFormData] = useState({
     nombre: "",
     email: "",
     consulta: "",
-  })
-  const [isVisible, setIsVisible] = useState(false)
+  });
+  const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    setIsVisible(true)
-  }, [])
+    setIsVisible(true);
+  }, []);
 
   const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    console.log("Formulario enviado:", formData)
-    // Show success message or handle form submission
-  }
+    e.preventDefault();
+
+    // Formatear el mensaje para WhatsApp
+    const message = `*Nueva Consulta Legal - Estudio Bustos & Roque*
+
+*Nombre:* ${formData.nombre}
+*Email:* ${formData.email}
+*Consulta:* ${formData.consulta}
+
+---
+Enviado desde el formulario web de Bustos & Roque`;
+
+    // Codificar el mensaje para la URL de WhatsApp
+    const encodedMessage = encodeURIComponent(message);
+
+    // Abrir WhatsApp con el mensaje
+    window.open(`https://wa.me/5493521539991?text=${encodedMessage}`, "_blank");
+
+    // Limpiar el formulario después del envío
+    setFormData({
+      nombre: "",
+      email: "",
+      consulta: "",
+    });
+  };
 
   const handleWhatsApp = () => {
-    const message = encodeURIComponent("Hola, me gustaría solicitar una consulta legal.")
-    window.open(`https://wa.me/5493515000000?text=${message}`, "_blank")
-  }
+    const message = encodeURIComponent(
+      "Hola, me gustaría solicitar una consulta legal."
+    );
+    window.open(`https://wa.me/5493521539991?text=${message}`, "_blank");
+  };
 
   const scrollToSection = (sectionId: string) => {
-    document.getElementById(sectionId)?.scrollIntoView({ behavior: "smooth" })
-  }
+    document.getElementById(sectionId)?.scrollIntoView({ behavior: "smooth" });
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#0f2f26] via-[#153F35] to-[#1a4a3e] text-white overflow-x-hidden">
@@ -111,9 +134,10 @@ export default function EstudioJuridicoLanding() {
                 height={50}
                 className="brightness-110"
               />
-             
             </div>
-            <span className="font-serif font-bold text-lg text-yellow-400">Bustos & Roque</span>
+            <span className="font-serif font-bold text-lg text-yellow-400">
+              Bustos & Roque
+            </span>
             <div className="lg:hidden text-transparent">33333</div>
             <div className="hidden md:flex items-center space-x-8">
               <button
@@ -153,21 +177,26 @@ export default function EstudioJuridicoLanding() {
       </nav>
 
       {/* Hero Section */}
-      <section id="inicio" className="relative min-h-screen flex items-center justify-center px-4 pt-20 mt-4">
+      <section
+        id="inicio"
+        className="relative min-h-screen flex items-center justify-center px-4 pt-20 mt-4"
+      >
         <div className="container max-w-7xl mx-auto">
           <div className="text-center relative z-10">
             {/* Logo with Glassmorphism */}
             <div
               className={`mb-12 transform transition-all duration-1000 ${
-                isVisible ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
+                isVisible
+                  ? "translate-y-0 opacity-100"
+                  : "translate-y-10 opacity-0"
               }`}
             >
               <div
                 className="inline-block p-8 rounded-3xl backdrop-blur-xl bg-white/5 border border-white/10 shadow-2xl"
                 style={{
                   backgroundImage: "url('/fondo.png')",
-                  backgroundSize: 'cover',
-                  backgroundPosition: 'center',
+                  backgroundSize: "cover",
+                  backgroundPosition: "center",
                 }}
               >
                 <Image
@@ -184,7 +213,9 @@ export default function EstudioJuridicoLanding() {
             {/* Main Heading */}
             <div
               className={`mb-8 transform transition-all duration-1000 delay-300 ${
-                isVisible ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
+                isVisible
+                  ? "translate-y-0 opacity-100"
+                  : "translate-y-10 opacity-0"
               }`}
             >
               <h1 className="text-5xl md:text-7xl lg:text-8xl font-serif font-bold mb-6 leading-tight">
@@ -192,20 +223,30 @@ export default function EstudioJuridicoLanding() {
                   Estudio Jurídico
                 </span>
                 <br />
-                <span className="text-yellow-400 drop-shadow-lg">Bustos & Roque</span>
+                <span className="text-yellow-400 drop-shadow-lg">
+                  Bustos & Roque
+                </span>
               </h1>
             </div>
 
             {/* Tagline */}
             <div
               className={`mb-12 transform transition-all duration-1000 delay-500 ${
-                isVisible ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
+                isVisible
+                  ? "translate-y-0 opacity-100"
+                  : "translate-y-10 opacity-0"
               }`}
             >
               <div className="backdrop-blur-xl bg-white/5 border border-white/10 rounded-2xl p-8 max-w-4xl mx-auto">
                 <p className="text-xl md:text-2xl lg:text-3xl text-gray-100 leading-relaxed font-light">
-                  Defendemos tus derechos con <span className="text-yellow-400 font-semibold">seriedad</span> y{" "}
-                  <span className="text-yellow-400 font-semibold">compromiso jurídico</span>
+                  Defendemos tus derechos con{" "}
+                  <span className="text-yellow-400 font-semibold">
+                    seriedad
+                  </span>{" "}
+                  y{" "}
+                  <span className="text-yellow-400 font-semibold">
+                    compromiso jurídico
+                  </span>
                 </p>
               </div>
             </div>
@@ -213,7 +254,9 @@ export default function EstudioJuridicoLanding() {
             {/* CTA Buttons */}
             <div
               className={`flex flex-col sm:flex-row gap-6 justify-center items-center transform transition-all duration-1000 delay-700 ${
-                isVisible ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
+                isVisible
+                  ? "translate-y-0 opacity-100"
+                  : "translate-y-10 opacity-0"
               }`}
             >
               <Button
@@ -237,20 +280,28 @@ export default function EstudioJuridicoLanding() {
             {/* Trust Indicators */}
             <div
               className={`mt-16 flex flex-wrap justify-center items-center gap-8 transform transition-all duration-1000 delay-1000 ${
-                isVisible ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
+                isVisible
+                  ? "translate-y-0 opacity-100"
+                  : "translate-y-10 opacity-0"
               }`}
             >
               <div className="flex items-center space-x-2 text-yellow-400">
                 <Star className="h-5 w-5 fill-current" />
-                <span className="text-sm font-medium">5+ Años de Experiencia</span>
+                <span className="text-sm font-medium">
+                  14+ Años de Experiencia
+                </span>
               </div>
               <div className="flex items-center space-x-2 text-yellow-400">
                 <CheckCircle className="h-5 w-5" />
-                <span className="text-sm font-medium">Excelencia Profesional</span>
+                <span className="text-sm font-medium">
+                  Excelencia Profesional
+                </span>
               </div>
               <div className="flex items-center space-x-2 text-yellow-400">
                 <Scale className="h-5 w-5" />
-                <span className="text-sm font-medium">Experiencia Jurídica</span>
+                <span className="text-sm font-medium">
+                  Experiencia Jurídica
+                </span>
               </div>
             </div>
           </div>
@@ -267,7 +318,9 @@ export default function EstudioJuridicoLanding() {
           {/* Section Header */}
           <div className="text-center mb-20">
             <div className="inline-block backdrop-blur-xl bg-white/5 border border-white/10 rounded-2xl px-8 py-4 mb-8">
-              <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-yellow-400">Sobre Nosotros</h2>
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-yellow-400">
+                Sobre Nosotros
+              </h2>
             </div>
             <div className="text-xl md:text-2xl text-gray-200 max-w-3xl mx-auto leading-relaxed whitespace-pre-line">
               {`Somos un equipo de abogados asociados y egresados de la Facultad de Derecho de la Universidad Nacional de Córdoba, con más de 14 años de trayectoria en el ejercicio de la profesión. 
@@ -294,20 +347,28 @@ Representamos causas tanto en el fuero provincial como federal. Desde nuestra ex
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#153F35]/80 to-transparent" />
                     <div className="absolute bottom-6 left-6 right-6">
-                      <h3 className="text-3xl font-serif font-bold text-yellow-400 mb-2">Diego Bustos</h3>
-                      <p className="text-yellow-200 font-medium">Especialista en Derecho Penal</p>
+                      <h3 className="text-3xl font-serif font-bold text-yellow-400 mb-2">
+                        Diego Bustos
+                      </h3>
+                      <p className="text-yellow-200 font-medium">
+                        Especialista en Derecho Penal
+                      </p>
                     </div>
                   </div>
                   <div className="p-8">
                     <p className="text-gray-200 leading-relaxed text-lg">
-                      Especialista en Derecho Penal, con amplia trayectoria en el fuero provincial y federal. Su
-                      experiencia abarca desde casos de menor complejidad hasta procesos penales de alta envergadura,
-                      siempre con un enfoque estratégico y personalizado.
+                      Especialista en Derecho Penal, con amplia trayectoria en
+                      el fuero provincial y federal. Su experiencia abarca desde
+                      casos de menor complejidad hasta procesos penales de alta
+                      envergadura, siempre con un enfoque estratégico y
+                      personalizado.
                     </p>
                     <div className="mt-6 flex items-center space-x-4">
                       <div className="flex items-center space-x-1">
                         <Star className="h-4 w-4 text-yellow-400 fill-current" />
-                        <span className="text-sm text-gray-300">Fuero Provincial y Federal</span>
+                        <span className="text-sm text-gray-300">
+                          Fuero Provincial y Federal
+                        </span>
                       </div>
                     </div>
                   </div>
@@ -329,20 +390,27 @@ Representamos causas tanto en el fuero provincial como federal. Desde nuestra ex
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#153F35]/80 to-transparent" />
                     <div className="absolute bottom-6 left-6 right-6">
-                      <h3 className="text-3xl font-serif font-bold text-yellow-400 mb-2">Roque Navarro</h3>
-                      <p className="text-yellow-200 font-medium">Especialista en Derecho Tributario y Civil</p>
+                      <h3 className="text-3xl font-serif font-bold text-yellow-400 mb-2">
+                        José Roque
+                      </h3>
+                      <p className="text-yellow-200 font-medium">
+                        Especialista en Derecho Tributario y Civil
+                      </p>
                     </div>
                   </div>
                   <div className="p-8">
                     <p className="text-gray-200 leading-relaxed text-lg">
-                      Profesional con enfoque en Derecho Tributario, Civil y Administrativo. Su expertise en materia
-                      fiscal y civil lo convierte en un referente para empresas y particulares que buscan soluciones
-                      jurídicas integrales.
+                      Profesional con enfoque en Derecho Tributario, Civil y
+                      Administrativo. Su expertise en materia fiscal y civil lo
+                      convierte en un referente para empresas y particulares que
+                      buscan soluciones jurídicas integrales.
                     </p>
                     <div className="mt-6 flex items-center space-x-4">
                       <div className="flex items-center space-x-1">
                         <Star className="h-4 w-4 text-yellow-400 fill-current" />
-                        <span className="text-sm text-gray-300">Derecho Tributario y Administrativo</span>
+                        <span className="text-sm text-gray-300">
+                          Derecho Tributario y Administrativo
+                        </span>
                       </div>
                     </div>
                   </div>
@@ -364,7 +432,8 @@ Representamos causas tanto en el fuero provincial como federal. Desde nuestra ex
               </h2>
             </div>
             <p className="text-xl md:text-2xl text-gray-200 max-w-3xl mx-auto leading-relaxed">
-              Brindamos asesoramiento integral en las principales ramas del derecho
+              Brindamos asesoramiento integral en las principales ramas del
+              derecho
             </p>
           </div>
 
@@ -374,37 +443,43 @@ Representamos causas tanto en el fuero provincial como federal. Desde nuestra ex
               {
                 icon: <Shield className="h-10 w-10" />,
                 title: "Amparos de Salud",
-                description: "Protección de derechos fundamentales en materia de salud y seguridad social. Representación administrativa y judicial de obras sociales y empresas de medicina prepaga, priorizando la conciliación para evitar litigios innecesarios.",
+                description:
+                  "Protección de derechos fundamentales en materia de salud y seguridad social. Representación administrativa y judicial de obras sociales y empresas de medicina prepaga, priorizando la conciliación para evitar litigios innecesarios.",
                 color: "from-slate-600 to-slate-700",
               },
               {
                 icon: <Scale className="h-10 w-10" />,
                 title: "Defensa Penal",
-                description: "Representación especializada en procesos penales provinciales y federales.",
+                description:
+                  "Representación especializada en procesos penales provinciales y federales.",
                 color: "from-yellow-600 to-yellow-700",
               },
               {
                 icon: <FileText className="h-10 w-10" />,
                 title: "Derecho Civil",
-                description: "Contratos, sucesiones, daños y perjuicios, y derecho de familia.",
+                description:
+                  "Contratos, sucesiones, daños y perjuicios, y derecho de familia.",
                 color: "from-emerald-700 to-emerald-800",
               },
               {
                 icon: <Car className="h-10 w-10" />,
                 title: "Accidentes y ART",
-                description: "Reclamos por accidentes de tránsito y accidentes de trabajo.",
+                description:
+                  "Reclamos por accidentes de tránsito y accidentes de trabajo.",
                 color: "from-amber-700 to-amber-800",
               },
               {
                 icon: <Calculator className="h-10 w-10" />,
                 title: "Derecho Tributario y Aduanero",
-                description: "Asesoramiento fiscal, recursos tributarios y operaciones aduaneras.",
+                description:
+                  "Asesoramiento fiscal, recursos tributarios y operaciones aduaneras.",
                 color: "from-stone-600 to-stone-700",
               },
               {
                 icon: <Users className="h-10 w-10" />,
                 title: "Consultas Laborales",
-                description: "Relaciones laborales, despidos, y conflictos entre empleadores y trabajadores.",
+                description:
+                  "Relaciones laborales, despidos, y conflictos entre empleadores y trabajadores.",
                 color: "from-zinc-600 to-zinc-700",
               },
             ].map((area, index) => (
@@ -425,7 +500,9 @@ Representamos causas tanto en el fuero provincial como federal. Desde nuestra ex
                     <h3 className="text-2xl font-serif font-bold mb-4 text-white group-hover:text-yellow-400 transition-colors duration-300">
                       {area.title}
                     </h3>
-                    <p className="text-gray-200 leading-relaxed">{area.description}</p>
+                    <p className="text-gray-200 leading-relaxed">
+                      {area.description}
+                    </p>
                     <div className="mt-6">
                       <Button
                         variant="ghost"
@@ -444,15 +521,21 @@ Representamos causas tanto en el fuero provincial como federal. Desde nuestra ex
       </section>
 
       {/* Contact Section */}
-      <section id="contacto" className="py-16 px-4 sm:py-24 md:py-32 sm:px-4 relative">
+      <section
+        id="contacto"
+        className="py-16 px-4 sm:py-24 md:py-32 sm:px-4 relative"
+      >
         <div className="container max-w-7xl mx-auto">
           {/* Section Header */}
           <div className="text-center mb-10 sm:mb-16 md:mb-20">
             <div className="inline-block backdrop-blur-xl bg-white/5 border border-white/10 rounded-2xl px-4 sm:px-8 py-2 sm:py-4 mb-6 sm:mb-8">
-              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-yellow-400">Contacto Rápido</h2>
+              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-yellow-400">
+                Contacto Rápido
+              </h2>
             </div>
             <p className="text-base sm:text-xl md:text-2xl text-gray-200 max-w-3xl mx-auto leading-relaxed">
-              Estamos aquí para ayudarte. Contáctanos para una consulta personalizada.
+              Estamos aquí para ayudarte. Contáctanos para una consulta
+              personalizada.
             </p>
           </div>
 
@@ -460,17 +543,27 @@ Representamos causas tanto en el fuero provincial como federal. Desde nuestra ex
             {/* Contact Form */}
             <Card className="backdrop-blur-xl bg-white/5 border border-white/10 shadow-2xl">
               <CardContent className="p-4 sm:p-6 md:p-10">
-                <h3 className="text-xl sm:text-2xl font-serif font-bold mb-6 sm:mb-8 text-yellow-400">Envíanos un mensaje</h3>
-                <form onSubmit={handleSubmit} className="space-y-6 sm:space-y-8">
+                <h3 className="text-xl sm:text-2xl font-serif font-bold mb-6 sm:mb-8 text-yellow-400">
+                  Envíanos un mensaje
+                </h3>
+                <form
+                  onSubmit={handleSubmit}
+                  className="space-y-6 sm:space-y-8"
+                >
                   <div className="space-y-2">
-                    <label htmlFor="nombre" className="block text-xs sm:text-sm font-semibold text-gray-200 mb-2 sm:mb-3">
+                    <label
+                      htmlFor="nombre"
+                      className="block text-xs sm:text-sm font-semibold text-gray-200 mb-2 sm:mb-3"
+                    >
                       Nombre Completo
                     </label>
                     <Input
                       id="nombre"
                       type="text"
                       value={formData.nombre}
-                      onChange={(e) => setFormData({ ...formData, nombre: e.target.value })}
+                      onChange={(e) =>
+                        setFormData({ ...formData, nombre: e.target.value })
+                      }
                       className="backdrop-blur-xl bg-white/10 border-2 border-white/20 focus:border-yellow-400 text-white placeholder:text-gray-400 rounded-xl py-3 sm:py-4 px-4 sm:px-6 text-base sm:text-lg transition-all duration-300"
                       placeholder="Tu nombre completo"
                       required
@@ -478,14 +571,19 @@ Representamos causas tanto en el fuero provincial como federal. Desde nuestra ex
                   </div>
 
                   <div className="space-y-2">
-                    <label htmlFor="email" className="block text-xs sm:text-sm font-semibold text-gray-200 mb-2 sm:mb-3">
+                    <label
+                      htmlFor="email"
+                      className="block text-xs sm:text-sm font-semibold text-gray-200 mb-2 sm:mb-3"
+                    >
                       Dirección de Email
                     </label>
                     <Input
                       id="email"
                       type="email"
                       value={formData.email}
-                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                      onChange={(e) =>
+                        setFormData({ ...formData, email: e.target.value })
+                      }
                       className="backdrop-blur-xl bg-white/10 border-2 border-white/20 focus:border-yellow-400 text-white placeholder:text-gray-400 rounded-xl py-3 sm:py-4 px-4 sm:px-6 text-base sm:text-lg transition-all duration-300"
                       placeholder="tu@email.com"
                       required
@@ -493,13 +591,18 @@ Representamos causas tanto en el fuero provincial como federal. Desde nuestra ex
                   </div>
 
                   <div className="space-y-2">
-                    <label htmlFor="consulta" className="block text-xs sm:text-sm font-semibold text-gray-200 mb-2 sm:mb-3">
+                    <label
+                      htmlFor="consulta"
+                      className="block text-xs sm:text-sm font-semibold text-gray-200 mb-2 sm:mb-3"
+                    >
                       Consulta Legal
                     </label>
                     <Textarea
                       id="consulta"
                       value={formData.consulta}
-                      onChange={(e) => setFormData({ ...formData, consulta: e.target.value })}
+                      onChange={(e) =>
+                        setFormData({ ...formData, consulta: e.target.value })
+                      }
                       className="backdrop-blur-xl bg-white/10 border-2 border-white/20 focus:border-yellow-400 text-white placeholder:text-gray-400 rounded-xl py-3 sm:py-4 px-4 sm:px-6 text-base sm:text-lg min-h-[100px] sm:min-h-[150px] transition-all duration-300"
                       placeholder="Describe tu consulta legal..."
                       required
@@ -528,8 +631,12 @@ Representamos causas tanto en el fuero provincial como federal. Desde nuestra ex
                         <MapPin className="h-7 w-7 sm:h-8 sm:w-8 text-yellow-400" />
                       </div>
                       <div>
-                        <h3 className="font-bold text-lg sm:text-xl text-white mb-1 sm:mb-2">Ubicación de la Oficina</h3>
-                        <p className="text-gray-200 text-base sm:text-lg">Córdoba Capital, Argentina</p>
+                        <h3 className="font-bold text-lg sm:text-xl text-white mb-1 sm:mb-2">
+                          Ubicación de la Oficina
+                        </h3>
+                        <p className="text-gray-200 text-base sm:text-lg">
+                          Córdoba Capital, Argentina
+                        </p>
                       </div>
                     </div>
                   </CardContent>
@@ -542,8 +649,12 @@ Representamos causas tanto en el fuero provincial como federal. Desde nuestra ex
                         <Mail className="h-7 w-7 sm:h-8 sm:w-8 text-yellow-400" />
                       </div>
                       <div>
-                        <h3 className="font-bold text-lg sm:text-xl text-white mb-1 sm:mb-2">Dirección de Email</h3>
-                        <p className="text-gray-200 text-sm sm:text-lg">estudiojuridicobustosroque@gmail.com</p>
+                        <h3 className="font-bold text-lg sm:text-xl text-white mb-1 sm:mb-2">
+                          Dirección de Email
+                        </h3>
+                        <p className="text-gray-200 text-sm sm:text-lg">
+                          estudiojuridicobustosroque@gmail.com
+                        </p>
                       </div>
                     </div>
                   </CardContent>
@@ -556,8 +667,12 @@ Representamos causas tanto en el fuero provincial como federal. Desde nuestra ex
                         <Clock className="h-7 w-7 sm:h-8 sm:w-8 text-yellow-400" />
                       </div>
                       <div>
-                        <h3 className="font-bold text-lg sm:text-xl text-white mb-1 sm:mb-2">Horario de Atención</h3>
-                        <p className="text-gray-200 text-base sm:text-lg">Lunes a Viernes, 9 a 17 hs</p>
+                        <h3 className="font-bold text-lg sm:text-xl text-white mb-1 sm:mb-2">
+                          Horario de Atención
+                        </h3>
+                        <p className="text-gray-200 text-base sm:text-lg">
+                          Lunes a Viernes, 9 a 17 hs
+                        </p>
                       </div>
                     </div>
                   </CardContent>
@@ -569,8 +684,12 @@ Representamos causas tanto en el fuero provincial como federal. Desde nuestra ex
                 <CardContent className="p-4 sm:p-8 text-center">
                   <div className="mb-4 sm:mb-6">
                     <MessageCircle className="h-12 w-12 sm:h-16 sm:w-16 text-green-400 mx-auto mb-3 sm:mb-4" />
-                    <h3 className="text-xl sm:text-2xl font-bold text-white mb-1 sm:mb-2">Consulta Inmediata</h3>
-                    <p className="text-gray-200 text-base sm:text-lg">Obtén asesoramiento legal instantáneo por WhatsApp</p>
+                    <h3 className="text-xl sm:text-2xl font-bold text-white mb-1 sm:mb-2">
+                      Consulta Inmediata
+                    </h3>
+                    <p className="text-gray-200 text-base sm:text-lg">
+                      Obtén asesoramiento legal instantáneo por WhatsApp
+                    </p>
                   </div>
                   <Button
                     onClick={handleWhatsApp}
@@ -590,6 +709,22 @@ Representamos causas tanto en el fuero provincial como federal. Desde nuestra ex
         </div>
       </section>
 
+      {/* WhatsApp Floating Button */}
+      <div className="fixed bottom-6 right-6 z-50">
+        <Button
+          onClick={handleWhatsApp}
+          className="bg-gradient-to-r from-[#113930] to-[#113930]/70 hover:from-[#113930]/40 hover:to-[#113930]/10 text-white font-bold w-14 h-14 rounded-full shadow-2xl transition-all duration-300 transform hover:scale-110 flex items-center justify-center p-0"
+        >
+          <Image
+            src="/whatsapp.png"
+            alt="WhatsApp"
+            width={32}
+            height={32}
+            className="w-6 h-6"
+          />
+        </Button>
+      </div>
+
       {/* Footer */}
       <footer className="py-16 px-4 backdrop-blur-xl bg-[#0f2f26]/80 border-t border-white/10">
         <div className="container max-w-7xl mx-auto">
@@ -605,11 +740,15 @@ Representamos causas tanto en el fuero provincial como federal. Desde nuestra ex
                   className="brightness-110"
                 />
                 <div>
-                  <h3 className="font-serif font-bold text-xl text-yellow-400">Bustos & Roque</h3>
+                  <h3 className="font-serif font-bold text-xl text-yellow-400">
+                    Bustos & Roque
+                  </h3>
                   <p className="text-gray-300 text-sm">Excelencia Jurídica</p>
                 </div>
               </div>
-              <p className="text-gray-300 italic">Atención personalizada, eficiente y ética</p>
+              <p className="text-gray-300 italic">
+                Atención personalizada, eficiente y ética
+              </p>
             </div>
 
             {/* Social Media */}
@@ -638,5 +777,5 @@ Representamos causas tanto en el fuero provincial como federal. Desde nuestra ex
         </div>
       </footer>
     </div>
-  )
+  );
 }
