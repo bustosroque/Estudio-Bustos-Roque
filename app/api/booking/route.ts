@@ -93,12 +93,13 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Crear fecha de inicio y fin correctamente en zona horaria de Argentina
+    // Crear fecha de inicio y fin
+    const startDateTime = new Date(fecha);
     const [hours, minutes] = hora.split(':').map(Number);
-    // Construir string ISO local con offset -03:00
-    const startDateTimeStr = `${fecha}T${hora.padStart(2, '0')}:00-03:00`;
-    const endHour = hours + 1;
-    const endDateTimeStr = `${fecha}T${endHour.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:00-03:00`;
+    startDateTime.setHours(hours, minutes, 0, 0);
+    
+    const endDateTime = new Date(startDateTime);
+    endDateTime.setHours(endDateTime.getHours() + 1); // 1 hora de duración
 
     // Mapear tipos de consulta a etiquetas legibles
     const consultationTypeLabels: { [key: string]: string } = {
@@ -125,11 +126,11 @@ Descripción: ${descripcion || 'Sin descripción adicional'}
 Reserva realizada desde el sitio web de Bustos & Roque
       `.trim(),
       start: {
-        dateTime: startDateTimeStr,
+        dateTime: startDateTime.toISOString(),
         timeZone: 'America/Argentina/Buenos_Aires',
       },
       end: {
-        dateTime: endDateTimeStr,
+        dateTime: endDateTime.toISOString(),
         timeZone: 'America/Argentina/Buenos_Aires',
       },
       // Removemos attendees para evitar el error de Domain-Wide Delegation
@@ -208,14 +209,14 @@ Estudio Jurídico Bustos & Roque
       // Buscar eventos en el rango solicitado
       const overlapRes = await calendar.events.list({
         calendarId: targetCalendarId,
-        timeMin: startDateTimeStr,
-        timeMax: endDateTimeStr,
+        timeMin: startDateTime.toISOString(),
+        timeMax: endDateTime.toISOString(),
         singleEvents: true,
         orderBy: 'startTime',
       });
       const overlapping = (overlapRes.data.items || []).some(ev =>
         ev.start?.dateTime && ev.end?.dateTime &&
-        ((new Date(ev.start.dateTime) < new Date(endDateTimeStr)) && (new Date(ev.end.dateTime) > new Date(startDateTimeStr)))
+        ((new Date(ev.start.dateTime) < endDateTime) && (new Date(ev.end.dateTime) > startDateTime))
       );
       if (overlapping) {
         return NextResponse.json({
