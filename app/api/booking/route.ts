@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { google } from 'googleapis';
+import nodemailer from 'nodemailer';
 
 // Configurar autenticación con Service Account
 const getGoogleAuth = () => {
@@ -62,6 +63,73 @@ const getCalendarId = () => {
   // Si no está configurado, usar el email del estudio
   return process.env.STUDIO_EMAIL || 'estudiojuridicobustosroque@gmail.com';
 };
+
+// Función para enviar email a los abogados
+async function notifyLawyers({ nombre, email, telefono, tipoConsulta, abogado, fecha, hora, descripcion, modalidad }: any) {
+  const recipients = (process.env.LAWYERS_EMAILS || '').split(',').map(e => e.trim()).filter(Boolean);
+  if (recipients.length === 0) return;
+
+  const transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+      user: process.env.SMTP_USER,
+      pass: process.env.SMTP_PASS,
+    },
+  });
+
+  const subject = `Nueva consulta reservada: ${nombre} (${tipoConsulta})`;
+  const text = `
+Nueva consulta reservada desde el sitio web:
+
+Nombre: ${nombre}
+Email: ${email}
+Teléfono: ${telefono}
+Tipo de Consulta: ${tipoConsulta}
+Abogado: ${abogado}
+Fecha: ${fecha}
+Hora: ${hora}
+Modalidad: ${modalidad}
+Descripción: ${descripcion || 'Sin descripción'}
+`;
+
+  const html = `
+  <div style="background: #153F35; color: #fff; font-family: 'Segoe UI', Arial, sans-serif; padding: 32px 0;">
+    <div style="max-width: 480px; margin: 0 auto; background: #1a4a3e; border-radius: 16px; box-shadow: 0 4px 24px rgba(0,0,0,0.12); overflow: hidden;">
+      <div style="background: #153F35; padding: 24px 32px 16px 32px; text-align: center;">
+        <h2 style="color: #D4AF37; font-size: 2rem; margin: 0 0 8px 0; font-family: serif;">Nueva Consulta Reservada</h2>
+        <p style="color: #fff; font-size: 1.1rem; margin: 0;">Estudio Jurídico <span style='color:#D4AF37;font-weight:bold;'>Bustos & Roque</span></p>
+      </div>
+      <div style="padding: 24px 32px; background: #1a4a3e;">
+        <table style="width: 100%; border-collapse: collapse;">
+          <tr><td style="color:#D4AF37;font-weight:bold;padding:8px 0;">Nombre:</td><td style="color:#fff;">${nombre}</td></tr>
+          <tr><td style="color:#D4AF37;font-weight:bold;padding:8px 0;">Email:</td><td style="color:#fff;">${email}</td></tr>
+          <tr><td style="color:#D4AF37;font-weight:bold;padding:8px 0;">Teléfono:</td><td style="color:#fff;">${telefono}</td></tr>
+          <tr><td style="color:#D4AF37;font-weight:bold;padding:8px 0;">Tipo de Consulta:</td><td style="color:#fff;">${tipoConsulta}</td></tr>
+          <tr><td style="color:#D4AF37;font-weight:bold;padding:8px 0;">Abogado:</td><td style="color:#fff;">${abogado}</td></tr>
+          <tr><td style="color:#D4AF37;font-weight:bold;padding:8px 0;">Fecha:</td><td style="color:#fff;">${fecha}</td></tr>
+          <tr><td style="color:#D4AF37;font-weight:bold;padding:8px 0;">Hora:</td><td style="color:#fff;">${hora}</td></tr>
+          <tr><td style="color:#D4AF37;font-weight:bold;padding:8px 0;">Modalidad:</td><td style="color:#fff;">${modalidad === 'presencial' ? 'Presencial' : 'Llamada'}</td></tr>
+          <tr><td style="color:#D4AF37;font-weight:bold;padding:8px 0;vertical-align:top;">Descripción:</td><td style="color:#fff;white-space:pre-line;">${descripcion || 'Sin descripción'}</td></tr>
+        </table>
+        <div style="margin-top: 24px; text-align: center;">
+          <span style="display:inline-block; background: #D4AF37; color: #153F35; font-weight: bold; padding: 10px 24px; border-radius: 8px; font-size: 1.1rem;">Turno reservado correctamente</span>
+        </div>
+      </div>
+      <div style="background: #153F35; color: #fff; text-align: center; padding: 16px 32px; font-size: 0.95rem; border-radius: 0 0 16px 16px;">
+        <p style="margin: 0;">Este mensaje es automático. No responder a este correo.<br>Estudio Jurídico Bustos & Roque</p>
+      </div>
+    </div>
+  </div>
+  `;
+
+  await transporter.sendMail({
+    from: `Reservas Bustos & Roque <${process.env.SMTP_USER}>`,
+    to: recipients,
+    subject,
+    text,
+    html,
+  });
+}
 
 export async function POST(request: NextRequest) {
   console.log('📞 POST /api/booking recibido');
@@ -231,6 +299,13 @@ Estudio Jurídico Bustos & Roque
         requestBody: event,
         sendUpdates: 'none' // Cambiado a 'none' para evitar problemas de permisos
       });
+
+      // Notificar a los abogados por email
+      try {
+        await notifyLawyers({ nombre, email, telefono, tipoConsulta, abogado, fecha, hora, descripcion, modalidad });
+      } catch (err) {
+        console.error('Error enviando email a abogados:', err);
+      }
 
       console.log('Evento creado exitosamente:', response.data);
 

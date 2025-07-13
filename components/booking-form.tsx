@@ -32,6 +32,7 @@ import {
 } from "lucide-react";
 import { format, addDays, isBefore, startOfDay } from "date-fns";
 import { es } from "date-fns/locale";
+import { Dialog, DialogContent, DialogHeader, DialogFooter, DialogTitle } from "@/components/ui/dialog";
 
 interface BookingFormData {
   nombre: string;
@@ -111,6 +112,8 @@ export function BookingForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [step, setStep] = useState(1);
   const [selectedDate, setSelectedDate] = useState<Date | undefined>(undefined);
+  const [showPriceModal, setShowPriceModal] = useState(false);
+  const [pendingSubmit, setPendingSubmit] = useState<React.FormEvent | null>(null);
 
   const handleDateSelect = (date: Date | undefined) => {
     setSelectedDate(date);
@@ -172,27 +175,18 @@ export function BookingForm() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setIsSubmitting(true);
+    // Mostrar modal de precio antes de enviar
+    setPendingSubmit(e);
+    setShowPriceModal(true);
+  };
 
+  // Confirmar y enviar la reserva después del modal
+  const confirmAndSubmit = async () => {
+    setShowPriceModal(false);
+    setIsSubmitting(true);
     try {
       await createGoogleCalendarEvent(formData);
-      
-      // Mostrar confirmación
-      alert(`¡Consulta reservada exitosamente!
-
-📅 Fecha: ${formData.fecha ? format(formData.fecha, 'dd/MM/yyyy', { locale: es }) : ''}
-🕐 Hora: ${formData.hora}
-👨‍💼 Abogado: ${formData.abogado}
-📍 Modalidad: ${formData.modalidad === 'presencial' ? 'Presencial' : 'Llamada'}
-📋 Tipo: ${consultationTypes.find(c => c.value === formData.tipoConsulta)?.label}
-
-✅ La consulta ha sido agregada al calendario del estudio
-📧 Recibirás un email de confirmación con los detalles
-🔔 Recordatorios automáticos 24h y 30min antes
-
-¡Gracias por confiar en Bustos & Roque!`);
-
-      // Limpiar formulario
+      alert(`¡Consulta reservada exitosamente!\n\n📅 Fecha: ${formData.fecha ? format(formData.fecha, 'dd/MM/yyyy', { locale: es }) : ''}\n🕐 Hora: ${formData.hora}\n👨‍💼 Abogado: ${formData.abogado}\n📍 Modalidad: ${formData.modalidad === 'presencial' ? 'Presencial' : 'Llamada'}\n📋 Tipo: ${consultationTypes.find(c => c.value === formData.tipoConsulta)?.label}\n\n✅ La consulta ha sido agregada al calendario del estudio\n📧 Recibirás un email de confirmación con los detalles\n🔔 Recordatorios automáticos 24h y 30min antes\n\n¡Gracias por confiar en Bustos & Roque!`);
       setFormData({
         nombre: "",
         email: "",
@@ -210,6 +204,7 @@ export function BookingForm() {
       alert('Error al reservar la consulta. Por favor, inténtalo nuevamente.');
     } finally {
       setIsSubmitting(false);
+      setPendingSubmit(null);
     }
   };
 
@@ -227,6 +222,57 @@ export function BookingForm() {
 
   return (
     <div className="w-full max-w-4xl mx-auto">
+      {/* Modal de confirmación de precio */}
+      <Dialog open={showPriceModal} onOpenChange={setShowPriceModal}>
+        <DialogContent
+          className="
+            w-full
+            max-w-xs
+            sm:max-w-md
+            mx-auto
+            my-6
+            rounded-2xl
+            backdrop-blur-xl
+            bg-white/10
+            border border-white/20
+            shadow-2xl
+            px-4 sm:px-8 py-6
+          "
+        >
+          <DialogHeader>
+            <DialogTitle asChild>
+              <h3 className="text-xl font-bold text-yellow-400 mb-2">Confirmar Consulta</h3>
+            </DialogTitle>
+          </DialogHeader>
+          <div className="text-gray-200 text-base mb-4">
+            ¿Deseas confirmar tu consulta?
+            <br />
+            <span className="block mt-2 text-lg text-yellow-300 font-semibold">
+              El valor de la consulta es de <span className="text-2xl font-bold">$69.000</span>.
+            </span>
+            <span className="block mt-4 text-yellow-200 text-base font-semibold bg-yellow-400/20 rounded-lg px-3 py-2 text-center">
+              <Mail className="inline h-5 w-5 mr-1 text-yellow-300 align-text-bottom" />
+              Recibirás todos los detalles y recordatorios por email
+            </span>
+          </div>
+          <DialogFooter className="flex flex-row gap-2 justify-end">
+            <Button
+              variant="outline"
+              onClick={() => setShowPriceModal(false)}
+              className="bg-white/10 border-white/20 text-gray-300 hover:bg-white/20 hover:border-white/40"
+            >
+              Volver
+            </Button>
+            <Button
+              onClick={confirmAndSubmit}
+              className="bg-gradient-to-r from-yellow-500 to-yellow-600 text-black font-bold"
+              disabled={isSubmitting}
+            >
+              Confirmar y Reservar
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
       <Card className="backdrop-blur-xl bg-white/5 border border-white/10 shadow-2xl overflow-hidden">
         <CardContent className="p-3 sm:p-4 md:p-6 lg:p-10">
           {/* Header */}
