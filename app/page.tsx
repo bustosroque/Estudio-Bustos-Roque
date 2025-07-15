@@ -37,31 +37,20 @@ export default function EstudioJuridicoLanding() {
     setIsVisible(true);
   }, []);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-
-    // Formatear el mensaje para WhatsApp
-    const message = `*Nueva Consulta Legal - Estudio Bustos & Roque*
-
-*Nombre:* ${formData.nombre}
-*Email:* ${formData.email}
-*Consulta:* ${formData.consulta}
-
----
-Enviado desde el formulario web de Bustos & Roque`;
-
-    // Codificar el mensaje para la URL de WhatsApp
-    const encodedMessage = encodeURIComponent(message);
-
-    // Abrir WhatsApp con el mensaje
-    window.open(`https://wa.me/5493521539991?text=${encodedMessage}`, "_blank");
-
-    // Limpiar el formulario después del envío
-    setFormData({
-      nombre: "",
-      email: "",
-      consulta: "",
-    });
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
+      if (!response.ok) throw new Error('Error al enviar el mensaje');
+      alert('¡Tu mensaje fue enviado correctamente! Nos contactaremos a la brevedad.');
+      setFormData({ nombre: '', email: '', consulta: '' });
+    } catch (err) {
+      alert('Hubo un error al enviar tu mensaje. Intenta nuevamente.');
+    }
   };
 
   const handleWhatsApp = () => {

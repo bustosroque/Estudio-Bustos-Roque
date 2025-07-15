@@ -33,6 +33,7 @@ import {
 import { format, addDays, isBefore, startOfDay } from "date-fns";
 import { es } from "date-fns/locale";
 import { Dialog, DialogContent, DialogHeader, DialogFooter, DialogTitle } from "@/components/ui/dialog";
+import { Switch } from "@/components/ui/switch";
 
 interface BookingFormData {
   nombre: string;
@@ -114,6 +115,8 @@ export function BookingForm() {
   const [selectedDate, setSelectedDate] = useState<Date | undefined>(undefined);
   const [showPriceModal, setShowPriceModal] = useState(false);
   const [pendingSubmit, setPendingSubmit] = useState<React.FormEvent | null>(null);
+  const [quieroReservarTurno, setQuieroReservarTurno] = useState<boolean>(false);
+  const [showAnimCalendar, setShowAnimCalendar] = useState<boolean>(true);
 
   const handleDateSelect = (date: Date | undefined) => {
     setSelectedDate(date);
@@ -173,11 +176,67 @@ export function BookingForm() {
     }
   };
 
+  // Enviar solo email de consulta inicial (sin reserva de turno)
+  const sendInitialConsultationEmail = async (data: BookingFormData) => {
+    try {
+      const response = await fetch("/api/booking", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          nombre: data.nombre,
+          email: data.email,
+          telefono: data.telefono,
+          tipoConsulta: data.tipoConsulta,
+          abogado: data.abogado,
+          descripcion: data.descripcion,
+          modalidad: data.modalidad,
+          // No se envía fecha ni hora
+        }),
+      });
+      if (!response.ok) throw new Error("Error al enviar la consulta inicial");
+      return await response.json();
+    } catch (error) {
+      console.error("Error al enviar consulta inicial:", error);
+      throw error;
+    }
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Mostrar modal de precio antes de enviar
-    setPendingSubmit(e);
-    setShowPriceModal(true);
+    if (quieroReservarTurno) {
+      // Mostrar modal de precio antes de enviar
+      setPendingSubmit(e);
+      setShowPriceModal(true);
+    } else {
+      // Validar campos básicos
+      if (!formData.nombre || !formData.email || !formData.telefono || !formData.tipoConsulta || !formData.abogado || !formData.descripcion) {
+        alert("Por favor completa todos los campos obligatorios.");
+        return;
+      }
+      setIsSubmitting(true);
+      try {
+        await sendInitialConsultationEmail(formData);
+        alert("¡Consulta enviada exitosamente!\n\nTu caso será evaluado por nuestro equipo y te contactaremos a la brevedad.\n\nGracias por confiar en Bustos & Roque.");
+        setFormData({
+          nombre: "",
+          email: "",
+          telefono: "",
+          tipoConsulta: "",
+          abogado: "",
+          fecha: undefined,
+          hora: "",
+          descripcion: "",
+          modalidad: "presencial",
+        });
+        setSelectedDate(undefined);
+        setStep(1);
+      } catch (error) {
+        alert("Error al enviar la consulta. Por favor, inténtalo nuevamente.");
+      } finally {
+        setIsSubmitting(false);
+        setPendingSubmit(null);
+      }
+    }
   };
 
   // Confirmar y enviar la reserva después del modal
@@ -452,58 +511,112 @@ export function BookingForm() {
               </div>
             )}
 
-            {/* Step 3: Fecha y Hora */}
+            {/* Step 3: Fecha y Hora + Toggle */}
             {step === 3 && (
               <div className="space-y-4 sm:space-y-6">
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
-                  <div className="space-y-3 sm:space-y-4">
-                    <label className="block text-sm font-semibold text-gray-200 mb-3 sm:mb-4">
-                      <CalendarIcon className="inline h-4 w-4 mr-2" />
-                      Selecciona una Fecha
-                    </label>
-                    <div className="backdrop-blur-xl bg-white/5 border border-white/10 rounded-xl p-2 sm:p-4 overflow-hidden">
-                      <Calendar
-                        mode="single"
-                        selected={selectedDate}
-                        onSelect={handleDateSelect}
-                        disabled={isDateDisabled}
-                        className="text-white w-full"
-                        classNames={{
-                          day_selected: "!bg-yellow-400 !text-black !font-semibold",
-                          day_today: "!bg-yellow-400/20 !text-yellow-400 !font-semibold",
-                          day_outside: "!text-gray-500 !opacity-50",
-                          day_disabled: "!text-gray-500 !opacity-50 !cursor-not-allowed",
-                   
-                        }}
-                      />
-                    </div>
-                  </div>
-
-                  <div className="space-y-3 sm:space-y-4">
-                    <label className="block text-sm font-semibold text-gray-200 mb-3 sm:mb-4">
-                      <Clock className="inline h-4 w-4 mr-2" />
-                      Selecciona un Horario
-                    </label>
-                    <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-3">
-                      {timeSlots.map((time) => (
-                        <button
-                          key={time}
-                          type="button"
-                          onClick={() => setFormData({ ...formData, hora: time })}
-                          className={`p-2 sm:p-3 rounded-lg border-2 transition-all duration-300 text-sm sm:text-base ${
-                            formData.hora === time
-                              ? "border-yellow-400 bg-yellow-400/10 text-yellow-400"
-                              : "border-white/20 bg-white/5 text-gray-300 hover:border-white/40"
-                          }`}
-                        >
-                          {time}
-                        </button>
-                      ))}
-                    </div>
-                  </div>
+                <div className="flex items-center gap-3 mb-2">
+                  <Switch
+                    checked={quieroReservarTurno}
+                    onCheckedChange={(checked) => {
+                      setQuieroReservarTurno(checked);
+                      setShowAnimCalendar(false);
+                      setTimeout(() => setShowAnimCalendar(true), 10);
+                    }}
+                    id="toggle-turno"
+                    className={
+                      quieroReservarTurno
+                        ? 'bg-yellow-400 border-yellow-400 data-[state=checked]:bg-yellow-400'
+                        : 'bg-gray-600 border-gray-500 data-[state=unchecked]:bg-gray-600'
+                    }
+                  />
+                  <label htmlFor="toggle-turno" className="text-base font-semibold select-none cursor-pointer transition-colors duration-300"
+                    style={{ color: quieroReservarTurno ? '#facc15' : '#fff' }}
+                  >
+                    {quieroReservarTurno
+                      ? 'Quiero reservar un turno ahora'
+                      : 'Solo quiero contar mi caso (sin reservar turno)'}
+                  </label>
                 </div>
-
-                <div className="space-y-2">
+                {/* Calendario y hora solo si quiero reservar turno */}
+                <div
+                  className={`transition-all duration-500 ${quieroReservarTurno && showAnimCalendar ? 'opacity-100 max-h-[1000px]' : 'opacity-0 max-h-0 overflow-hidden'}`}
+                >
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
+                    <div className="space-y-3 sm:space-y-4">
+                      <label className="block text-sm font-semibold text-gray-200 mb-3 sm:mb-4">
+                        <CalendarIcon className="inline h-4 w-4 mr-2" />
+                        Selecciona una Fecha
+                      </label>
+                      <div className="backdrop-blur-xl bg-white/5 border border-white/10 rounded-xl p-2 sm:p-4 overflow-hidden">
+                        <Calendar
+                          mode="single"
+                          selected={selectedDate}
+                          onSelect={handleDateSelect}
+                          disabled={isDateDisabled}
+                          className="text-white w-full"
+                          classNames={{
+                            day_selected: "!bg-yellow-400 !text-black !font-semibold",
+                            day_today: "!bg-yellow-400/20 !text-yellow-400 !font-semibold",
+                            day_outside: "!text-gray-500 !opacity-50",
+                            day_disabled: "!text-gray-500 !opacity-50 !cursor-not-allowed",
+                          }}
+                        />
+                      </div>
+                    </div>
+                    <div className="space-y-3 sm:space-y-4">
+                      <label className="block text-sm font-semibold text-gray-200 mb-3 sm:mb-4">
+                        <Clock className="inline h-4 w-4 mr-2" />
+                        Selecciona un Horario
+                      </label>
+                      <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-3">
+                        {timeSlots.map((time) => (
+                          <button
+                            key={time}
+                            type="button"
+                            onClick={() => setFormData({ ...formData, hora: time })}
+                            className={`p-2 sm:p-3 rounded-lg border-2 transition-all duration-300 text-sm sm:text-base ${
+                              formData.hora === time
+                                ? "border-yellow-400 bg-yellow-400/10 text-yellow-400"
+                                : "border-white/20 bg-white/5 text-gray-300 hover:border-white/40"
+                            }`}
+                          >
+                            {time}
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                  {/* Resumen de la reserva */}
+                  {(formData.fecha || formData.hora) && (
+                    <div className="backdrop-blur-xl bg-white/5 border border-white/10 rounded-xl p-4 sm:p-6 mt-4">
+                      <h3 className="text-yellow-400 font-bold mb-3 sm:mb-4 text-base sm:text-lg">Resumen de tu Reserva</h3>
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 text-sm">
+                        <div>
+                          <p className="text-gray-400">Fecha:</p>
+                          <p className="text-white font-semibold">
+                            {formData.fecha ? format(formData.fecha, 'dd/MM/yyyy', { locale: es }) : 'No seleccionada'}
+                          </p>
+                        </div>
+                        <div>
+                          <p className="text-gray-400">Hora:</p>
+                          <p className="text-white font-semibold">{formData.hora || 'No seleccionada'}</p>
+                        </div>
+                        <div>
+                          <p className="text-gray-400">Abogado:</p>
+                          <p className="text-white font-semibold">{formData.abogado}</p>
+                        </div>
+                        <div>
+                          <p className="text-gray-400">Modalidad:</p>
+                          <p className="text-white font-semibold">
+                            {formData.modalidad === 'presencial' ? 'Presencial' : 'Llamada'}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                </div>
+                {/* Campo de descripción siempre visible */}
+                <div className="space-y-2 mt-4">
                   <label className="block text-sm font-semibold text-gray-200 mb-2">
                     Descripción de la Consulta
                   </label>
@@ -512,41 +625,12 @@ export function BookingForm() {
                     onChange={(e) => setFormData({ ...formData, descripcion: e.target.value })}
                     className="backdrop-blur-xl bg-white/10 border-2 border-white/20 focus:border-yellow-400 text-white placeholder:text-gray-400 rounded-xl py-3 px-4 text-base sm:text-lg min-h-[100px] sm:min-h-[120px] transition-all duration-300"
                     placeholder="Describe brevemente tu consulta legal..."
+                    required
                   />
                 </div>
-
-                {/* Resumen de la reserva */}
-                {(formData.fecha || formData.hora) && (
-                  <div className="backdrop-blur-xl bg-white/5 border border-white/10 rounded-xl p-4 sm:p-6">
-                    <h3 className="text-yellow-400 font-bold mb-3 sm:mb-4 text-base sm:text-lg">Resumen de tu Reserva</h3>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 text-sm">
-                      <div>
-                        <p className="text-gray-400">Fecha:</p>
-                        <p className="text-white font-semibold">
-                          {formData.fecha ? format(formData.fecha, 'dd/MM/yyyy', { locale: es }) : 'No seleccionada'}
-                        </p>
-                      </div>
-                      <div>
-                        <p className="text-gray-400">Hora:</p>
-                        <p className="text-white font-semibold">{formData.hora || 'No seleccionada'}</p>
-                      </div>
-                      <div>
-                        <p className="text-gray-400">Abogado:</p>
-                        <p className="text-white font-semibold">{formData.abogado}</p>
-                      </div>
-                      <div>
-                        <p className="text-gray-400">Modalidad:</p>
-                        <p className="text-white font-semibold">
-                          {formData.modalidad === 'presencial' ? 'Presencial' : 'Llamada'}
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                )}
               </div>
             )}
-
-            {/* Navigation Buttons */}
+            {/* Navigation Buttons y Submit adaptado */}
             <div className="flex flex-col sm:flex-row justify-between gap-3 sm:gap-0 pt-4 sm:pt-6">
               {step > 1 && (
                 <Button
@@ -558,7 +642,6 @@ export function BookingForm() {
                   Anterior
                 </Button>
               )}
-              
               {step < 3 ? (
                 <Button
                   type="button"
@@ -575,18 +658,31 @@ export function BookingForm() {
               ) : (
                 <Button
                   type="submit"
-                  disabled={isSubmitting || !formData.fecha || !formData.hora}
+                  disabled={
+                    isSubmitting ||
+                    (quieroReservarTurno && (!formData.fecha || !formData.hora)) ||
+                    !formData.descripcion
+                  }
                   className="bg-gradient-to-r from-yellow-500 to-yellow-600 hover:from-yellow-600 hover:to-yellow-700 text-black font-bold px-6 sm:px-8 py-2 sm:py-3 rounded-xl transition-all duration-300 transform hover:scale-105 shadow-xl disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none text-sm sm:text-base order-1 sm:order-2"
                 >
                   {isSubmitting ? (
                     <>
                       <Loader2 className="mr-2 h-4 w-4 sm:h-5 sm:w-5 animate-spin" />
-                      Reservando...
+                      {quieroReservarTurno ? "Reservando..." : "Enviando..."}
                     </>
                   ) : (
                     <>
-                      Confirmar Reserva
-                      <CheckCircle className="ml-2 h-4 w-4 sm:h-5 sm:w-5" />
+                      {quieroReservarTurno ? (
+                        <>
+                          Confirmar Reserva
+                          <CheckCircle className="ml-2 h-4 w-4 sm:h-5 sm:w-5" />
+                        </>
+                      ) : (
+                        <>
+                          Enviar Consulta
+                          <CheckCircle className="ml-2 h-4 w-4 sm:h-5 sm:w-5" />
+                        </>
+                      )}
                     </>
                   )}
                 </Button>
