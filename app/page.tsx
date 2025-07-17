@@ -40,16 +40,18 @@ export default function EstudioJuridicoLanding() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      const response = await fetch('/api/contact', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
       });
-      if (!response.ok) throw new Error('Error al enviar el mensaje');
-      alert('¡Tu mensaje fue enviado correctamente! Nos contactaremos a la brevedad.');
-      setFormData({ nombre: '', email: '', consulta: '' });
+      if (!response.ok) throw new Error("Error al enviar el mensaje");
+      alert(
+        "¡Tu mensaje fue enviado correctamente! Nos contactaremos a la brevedad."
+      );
+      setFormData({ nombre: "", email: "", consulta: "" });
     } catch (err) {
-      alert('Hubo un error al enviar tu mensaje. Intenta nuevamente.');
+      alert("Hubo un error al enviar tu mensaje. Intenta nuevamente.");
     }
   };
 
@@ -140,6 +142,12 @@ export default function EstudioJuridicoLanding() {
               >
                 Reservar
               </Button>
+              <a
+                href="/noticias"
+                className="ml-2 text-yellow-400 font-semibold text-sm px-3 py-2 rounded-lg hover:bg-yellow-400/10 transition-colors"
+              >
+                Noticias
+              </a>
             </div>
             <div className="hidden md:flex items-center space-x-6 lg:space-x-8">
               <button
@@ -172,6 +180,12 @@ export default function EstudioJuridicoLanding() {
               >
                 Contacto
               </button>
+              <a
+                href="/noticias"
+                className="text-yellow-400 font-semibold text-sm px-4 py-2 rounded-lg hover:bg-yellow-400/10 transition-colors border border-yellow-400/30 ml-2"
+              >
+                Noticias
+              </a>
             </div>
             {/* <Button
               onClick={handleWhatsApp}
@@ -247,13 +261,13 @@ export default function EstudioJuridicoLanding() {
             >
               <div className="backdrop-blur-xl bg-white/5 border border-white/10 rounded-2xl p-8 max-w-4xl mx-auto">
                 <p className="text-xl md:text-2xl lg:text-3xl text-gray-100 leading-relaxed font-light">
-                  Defendemos tus derechos con{" "}
+                  Comprometidos con el{" "}
                   <span className="text-yellow-400 font-semibold">
-                    seriedad
+                    derecho,
                   </span>{" "}
-                  y{" "}
+                  orientados a la{" "}
                   <span className="text-yellow-400 font-semibold">
-                    compromiso jurídico
+                    excelencia
                   </span>
                 </p>
               </div>
@@ -299,16 +313,16 @@ export default function EstudioJuridicoLanding() {
                   14+ Años de Experiencia
                 </span>
               </div>
-              <div className="flex items-center space-x-2 text-yellow-400">
+              {/* <div className="flex items-center space-x-2 text-yellow-400">
                 <CheckCircle className="h-5 w-5" />
                 <span className="text-sm font-medium">
                   Excelencia Profesional
                 </span>
-              </div>
+              </div> */}
               <div className="flex items-center space-x-2 text-yellow-400">
                 <Scale className="h-5 w-5" />
                 <span className="text-sm font-medium">
-                  Experiencia Jurídica
+                  fuero provincial y federal
                 </span>
               </div>
             </div>
@@ -330,12 +344,14 @@ export default function EstudioJuridicoLanding() {
                 Sobre Nosotros
               </h2>
             </div>
-            <div className="text-xl md:text-2xl text-gray-200 max-w-3xl mx-auto leading-relaxed whitespace-pre-line">
+            <div className="text-xl md:text-2xl text-gray-200 max-w-3xl mx-auto leading-relaxed whitespace-pre-line text-justify indent-[1.25rem]">
               {`Somos un equipo de abogados asociados y egresados de la Facultad de Derecho de la Universidad Nacional de Córdoba, con más de 14 años de trayectoria en el ejercicio de la profesión. 
 Nos especializamos en distintas materias, específicamente en derecho comercial, derecho societario, derecho tributario-aduanero, derecho constitucional, derecho administrativo. Asimismo, nos dedicamos a la representación administrativa y judicial de obras sociales y empresas de medicina prepaga, utilizando la conciliación como herramienta primordial para la resolución de conflictos en etapa administrativa a los fines de disminuir la judicialidad.
 Brindamos atención integral y, mediante estrategias legales, priorizamos optimizar los recursos económicos y el capital de la empresa, evitando la litigiosidad. 
 Ofrecemos un servicio personalizado y acorde a cada empresa, escuchando las necesidades de nuestros representados y en base a ello, planteamos los objetivos para su cumplimiento, tanto en corto, mediano y a largo plazo. 
-Representamos causas tanto en el fuero provincial como federal. Desde nuestra experiencia, estamos convencidos que podemos lograr la reducción de la gran cantidad de amparos de salud que se encuentran actualmente en trámite en contra de esta empresa, evitando así un dispendio jurisdiccional innecesario que repercute en el pago de prestaciones onerosas y gastos de juicio innecesario, lo que muchas veces pone en jaque la estabilidad financiera de la empresa.`}
+Representamos causas tanto en el fuero provincial como federal. Desde nuestra experiencia, estamos convencidos que podemos lograr la reducción de la gran cantidad de amparos de salud que se encuentran actualmente en trámite en contra de esta empresa, evitando así un dispendio jurisdiccional innecesario que repercute en el pago de prestaciones onerosas y gastos de juicio innecesario, lo que muchas veces pone en jaque la estabilidad financiera de la empresa.
+
+  Nuestro estudio brinda servicios jurídicos en toda la provincia de Córdoba y a nivel federal, representando a clientes en todo el país.`}
             </div>
           </div>
 
@@ -364,18 +380,24 @@ Representamos causas tanto en el fuero provincial como federal. Desde nuestra ex
                     </div>
                   </div>
                   <div className="p-8">
-                    <p className="text-gray-200 leading-relaxed text-lg">
-                      Especialista en Derecho Penal, con amplia trayectoria en
-                      el fuero provincial y federal. Su experiencia abarca desde
-                      casos de menor complejidad hasta procesos penales de alta
-                      envergadura, siempre con un enfoque estratégico y
-                      personalizado.
+                    <p className="text-gray-200 leading-relaxed text-lg text-justify indent-5">
+                      Especialista en Derecho Penal, con más de 5 años de
+                      experiencia en el fuero provincial y federal. Ha
+                      intervenido en procesos penales de diversa complejidad,
+                      abarcando delitos económicos, contra la administración
+                      pública y delitos comunes. Su enfoque estratégico prioriza
+                      la defensa de los derechos y garantías constitucionales.
+                      Considera fundamental la utilización de herramientas
+                      alternativas de resolución de conflictos, como la
+                      conciliación y la mediación penal, para lograr soluciones
+                      eficientes y evitar litigios innecesarios.
                     </p>
                     <div className="mt-6 flex items-center space-x-4">
                       <div className="flex items-center space-x-1">
                         <Star className="h-4 w-4 text-yellow-400 fill-current" />
                         <span className="text-sm text-gray-300">
-                          Fuero Provincial y Federal
+                          Actuación en toda la provincia de Córdoba y fuero
+                          federal en todo el país
                         </span>
                       </div>
                     </div>
@@ -407,11 +429,18 @@ Representamos causas tanto en el fuero provincial como federal. Desde nuestra ex
                     </div>
                   </div>
                   <div className="p-8">
-                    <p className="text-gray-200 leading-relaxed text-lg">
-                      Profesional con enfoque en Derecho Tributario, Civil y
-                      Administrativo. Su expertise en materia fiscal y civil lo
-                      convierte en un referente para empresas y particulares que
-                      buscan soluciones jurídicas integrales.
+                    <p className="text-gray-200 leading-relaxed text-lg text-justify indent-5">
+                      Especialista en Derecho Constitucional, Tributario,
+                      Aduanero y Civil. Con más de 14 años de experiencia en el
+                      Juzgado Federal de Primera Instancia N° 1 de Córdoba, se
+                      especializa en procesos constitucionales (amparos,
+                      acciones declarativas, inconstitucionalidad) y posee
+                      amplia experiencia en materia tributaria y aduanera, tanto
+                      penal económica como contencioso administrativa. Considera
+                      la conciliación una herramienta fundamental para la
+                      resolución de conflictos. Atiende cuestiones litigiosas en
+                      el fuero civil y reclamos administrativos y judiciales en
+                      defensa del consumidor.
                     </p>
                     <div className="mt-6 flex items-center space-x-4">
                       <div className="flex items-center space-x-1">
@@ -517,13 +546,40 @@ Representamos causas tanto en el fuero provincial como federal. Desde nuestra ex
                         className="text-yellow-400 hover:text-yellow-300 hover:bg-yellow-400/10 p-0 h-auto font-semibold"
                         onClick={() => scrollToSection("reserva")}
                       >
-                        Reservar Consulta <ArrowRight className="ml-2 h-4 w-4" />
+                        Reservar Consulta{" "}
+                        <ArrowRight className="ml-2 h-4 w-4" />
                       </Button>
                     </div>
                   </div>
                 </CardContent>
               </Card>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Jurisdicción */}
+      <section id="jurisdiccion" className="py-32 px-4 relative">
+        <div className="container max-w-7xl mx-auto">
+          {/* Section Header */}
+          <div className="text-center mb-20">
+            <div className="inline-block backdrop-blur-xl bg-white/5 border border-white/10 rounded-2xl px-8 py-4 mb-8">
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-yellow-400">
+                Jurisdicción
+              </h2>
+            </div>
+            <div className="text-xl md:text-2xl text-gray-200 max-w-3xl mx-auto leading-relaxed text-justify ">
+              Litigamos principalmente en la Provincia de Córdoba, actuando en el Foro General Provincial, la Cámara en lo Civil y Comercial, y demás tribunales con sede en <span className="font-semibold text-yellow-400">La Rioja 441</span>, Córdoba Capital. Además, representamos a clientes en toda la provincia y a nivel federal en todo el país.
+            </div>
+            <div className="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto mt-6 text-justify">
+              Nuestro conocimiento profundo del funcionamiento judicial en estas jurisdicciones nos permite ofrecer una defensa sólida, eficiente y cercana a las personas, adaptándonos a las necesidades de cada caso.
+            </div>
+            <a
+              href="/noticias"
+              className="inline-block mt-10 bg-yellow-400 text-[#153F35] font-bold px-8 py-4 rounded-full shadow-xl hover:bg-yellow-300 transition-colors text-lg border-2 border-yellow-400/50"
+            >
+              Ver Noticias & Novedades
+            </a>
           </div>
         </div>
       </section>
@@ -539,8 +595,9 @@ Representamos causas tanto en el fuero provincial como federal. Desde nuestra ex
               </h2>
             </div>
             <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-200 max-w-3xl mx-auto leading-relaxed px-4">
-              Agenda una consulta personalizada con nuestros especialistas. 
-              Selecciona el tipo de consulta y te asignaremos automáticamente al abogado más adecuado.
+              Agenda una consulta personalizada con nuestros especialistas.
+              Selecciona el tipo de consulta y te asignaremos automáticamente al
+              abogado más adecuado.
             </p>
           </div>
 
@@ -565,8 +622,8 @@ Representamos causas tanto en el fuero provincial como federal. Desde nuestra ex
               </h2>
             </div>
             <p className="text-base sm:text-xl md:text-2xl text-gray-200 max-w-3xl mx-auto leading-relaxed">
-              Estamos aquí para ayudarte. Contáctanos para una consulta
-              personalizada.
+              Atendemos consultas y representamos clientes en toda la provincia
+              de Córdoba y a nivel federal en todo el país.
             </p>
           </div>
 
@@ -666,7 +723,8 @@ Representamos causas tanto en el fuero provincial como federal. Desde nuestra ex
                           Ubicación de la Oficina
                         </h3>
                         <p className="text-gray-200 text-base sm:text-lg">
-                          Córdoba Capital, Argentina
+                          La Rioja 441 Planta Baja “E”, Córdoba Capital,
+                          Argentina”
                         </p>
                       </div>
                     </div>
@@ -702,7 +760,7 @@ Representamos causas tanto en el fuero provincial como federal. Desde nuestra ex
                           Horario de Atención
                         </h3>
                         <p className="text-gray-200 text-base sm:text-lg">
-                          Lunes a Viernes, 9 a 17 hs
+                          Lunes a Viernes, 8 a 19 hs
                         </p>
                       </div>
                     </div>
@@ -778,8 +836,19 @@ Representamos causas tanto en el fuero provincial como federal. Desde nuestra ex
                 </div>
               </div>
               <p className="text-gray-300 italic">
-                Atención personalizada, eficiente y ética
+                Comprometidos con el{" "}
+                <span className="text-yellow-400 font-semibold">derecho</span>,
+                orientados a la{" "}
+                <span className="text-yellow-400 font-semibold">
+                  excelencia
+                </span>
               </p>
+              <a
+                href="/noticias"
+                className="inline-block mt-4 text-yellow-400 font-semibold underline underline-offset-4 hover:text-yellow-300 transition-colors text-base"
+              >
+                Noticias & Novedades
+              </a>
             </div>
 
             {/* Social Media */}
