@@ -18,63 +18,62 @@ const noticias: Noticia[] = [
   {
     id: 1,
     slug: "nota-en-defensa-y-justicia",
-    titulo: "Nota en Diario Defensa y Justicia",
-    resumen:
-      "Uno de nuestros abogados fue entrevistado por el diario Defensa y Justicia, medio argentino especializado en noticias del ámbito judicial, legal, económico y empresarial, con sede en Córdoba Capital. En la nota, se abordaron temas de actualidad jurídica y experiencias profesionales relevantes.",
+    titulo: "Sin una justicia independiente no se puede construir la República",
+    resumen: "En esta nota de opinión, el Dr. José Roque analiza el rol del Poder Judicial en la Argentina actual y advierte que, debido a la influencia de los otros poderes del Estado, no se garantiza una verdadera independencia judicial. Sostiene que sin justicia autónoma no puede haber República ni democracia plena.",
     fecha: "2024-06-01",
-    autor: "Estudio Jurídico Bustos & Roque",
-    imagen: "https://upload.wikimedia.org/wikipedia/commons/5/51/Parte_Frontal.jpg",
+    autor: "Dr. Jose Roque",
+    imagen: "/images/joseroquenoticias.png",
     destacado: true,
-    categoria: "Prensa",
+    categoria: "Opinión Jurídica",
   },
-  {
-    id: 2,
-    slug: "exito-en-caso-penal",
-    titulo: "Éxito en caso penal de alta complejidad",
-    resumen:
-      "Nuestro equipo logró la absolución de un cliente en un caso penal de gran repercusión mediática, demostrando la importancia de la defensa técnica y la estrategia jurídica.",
-    fecha: "2024-05-28",
-    autor: "Dr. Diego Bustos",
-    imagen: "https://grimaldilexyasociados.com/wp-content/uploads/2024/04/interaccion-defensor-sistema-judicial-1024x585.jpg",
-    destacado: true,
-    categoria: "Casos de Éxito",
-  },
-  {
-    id: 3,
-    slug: "nueva-ley-tributaria-analisis",
-    titulo: "Análisis de la nueva ley tributaria argentina",
-    resumen:
-      "El Dr. José Roque analiza los principales cambios de la nueva ley tributaria y su impacto en empresas y particulares.",
-    fecha: "2024-05-20",
-    autor: "Dr. José Roque",
-    imagen: "https://fotos.perfil.com/2022/06/04/trim/950/534/5-6-2022-reforma-tributaria-1367205.jpg",
-    destacado: false,
-    categoria: "Análisis Legal",
-  },
-  {
-    id: 4,
-    slug: "conferencia-derecho-civil",
-    titulo: "Conferencia sobre Derecho Civil en la UNC",
-    resumen:
-      "Participación de nuestro estudio en la conferencia anual de Derecho Civil organizada por la Universidad Nacional de Córdoba.",
-    fecha: "2024-05-10",
-    autor: "Estudio Jurídico Bustos & Roque",
-    imagen: "/images/logo-transparente.png",
-    destacado: false,
-    categoria: "Eventos",
-  },
-  {
-    id: 5,
-    slug: "conferencia-derecho-civil2",
-    titulo: "Conferencia sobre Derecho Civil en la UNC",
-    resumen:
-      "Participación de nuestro estudio en la conferencia anual de Derecho Civil organizada por la Universidad Nacional de Córdoba.",
-    fecha: "2024-05-10",
-    autor: "Estudio Jurídico Bustos & Roque",
-    imagen: "/images/logo-transparente.png",
-    destacado: false,
-    categoria: "Eventos",
-  },
+  // {
+  //   id: 2,
+  //   slug: "exito-en-caso-penal",
+  //   titulo: "Éxito en caso penal de alta complejidad",
+  //   resumen:
+  //     "Nuestro equipo logró la absolución de un cliente en un caso penal de gran repercusión mediática, demostrando la importancia de la defensa técnica y la estrategia jurídica.",
+  //   fecha: "2024-05-28",
+  //   autor: "Dr. Diego Bustos",
+  //   imagen: "https://grimaldilexyasociados.com/wp-content/uploads/2024/04/interaccion-defensor-sistema-judicial-1024x585.jpg",
+  //   destacado: true,
+  //   categoria: "Casos de Éxito",
+  // },
+  // {
+  //   id: 3,
+  //   slug: "nueva-ley-tributaria-analisis",
+  //   titulo: "Análisis de la nueva ley tributaria argentina",
+  //   resumen:
+  //     "El Dr. José Roque analiza los principales cambios de la nueva ley tributaria y su impacto en empresas y particulares.",
+  //   fecha: "2024-05-20",
+  //   autor: "Dr. José Roque",
+  //   imagen: "https://fotos.perfil.com/2022/06/04/trim/950/534/5-6-2022-reforma-tributaria-1367205.jpg",
+  //   destacado: false,
+  //   categoria: "Análisis Legal",
+  // },
+  // {
+  //   id: 4,
+  //   slug: "conferencia-derecho-civil",
+  //   titulo: "Conferencia sobre Derecho Civil en la UNC",
+  //   resumen:
+  //     "Participación de nuestro estudio en la conferencia anual de Derecho Civil organizada por la Universidad Nacional de Córdoba.",
+  //   fecha: "2024-05-10",
+  //   autor: "Estudio Jurídico Bustos & Roque",
+  //   imagen: "/images/logo-transparente.png",
+  //   destacado: false,
+  //   categoria: "Eventos",
+  // },
+  // {
+  //   id: 5,
+  //   slug: "conferencia-derecho-civil2",
+  //   titulo: "Conferencia sobre Derecho Civil en la UNC",
+  //   resumen:
+  //     "Participación de nuestro estudio en la conferencia anual de Derecho Civil organizada por la Universidad Nacional de Córdoba.",
+  //   fecha: "2024-05-10",
+  //   autor: "Estudio Jurídico Bustos & Roque",
+  //   imagen: "/images/logo-transparente.png",
+  //   destacado: false,
+  //   categoria: "Eventos",
+  // },
   // ...más noticias simuladas
 ];
 
@@ -101,7 +100,7 @@ export default function NoticiasPage(): ReactNode {
               height={40}
               className="brightness-110"
             />
-            <span className="font-serif font-bold text-lg text-yellow-400">
+            <span className="font-serif font-bold text-lg text-yellow-600">
               Bustos & Roque
             </span>
           </Link>
@@ -109,7 +108,7 @@ export default function NoticiasPage(): ReactNode {
             <Link href="/" className="text-white/80 hover:text-yellow-400 transition-colors text-sm font-semibold">
               Inicio
             </Link>
-            <Link href="/noticias" className="text-yellow-400 font-semibold text-sm px-4 py-2 rounded-lg hover:bg-yellow-400/10 transition-colors border border-yellow-400/30">
+            <Link href="/noticias" className="text-yellow-600 font-semibold text-sm px-4 py-2 rounded-lg hover:bg-yellow-400/10 transition-colors border border-yellow-400/30">
               Noticias
             </Link>
           </nav>
@@ -120,7 +119,7 @@ export default function NoticiasPage(): ReactNode {
         <div className="mb-8">
           <Link
             href="/"
-            className="inline-block text-yellow-400 hover:text-yellow-300 font-semibold underline underline-offset-4 transition-colors text-base"
+            className="inline-block text-yellow-600 hover:text-yellow-500 font-semibold underline-offset-4 transition-colors text-base"
           >
             ← Volver al inicio
           </Link>
@@ -128,7 +127,7 @@ export default function NoticiasPage(): ReactNode {
         {/* Header de sección */}
         <div className="text-center mb-16">
           <div className="inline-block backdrop-blur-xl bg-white/5 border border-white/10 rounded-2xl px-8 py-4 mb-8">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-yellow-400">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-yellow-600">
               Noticias & Novedades
             </h1>
           </div>
@@ -139,7 +138,7 @@ export default function NoticiasPage(): ReactNode {
         {/* Categorías */}
         <div className="flex flex-wrap gap-3 justify-center mb-12">
           {categorias.map((cat) => (
-            <span key={cat} className="px-4 py-2 rounded-full bg-yellow-400/10 text-yellow-300 font-semibold text-sm border border-yellow-400/20">
+            <span key={cat} className="px-4 py-2 rounded-full bg-yellow-700/10 text-yellow-600 font-semibold text-sm border border-yellow-700/20">
               {cat}
             </span>
           ))}
@@ -147,7 +146,7 @@ export default function NoticiasPage(): ReactNode {
         {/* Noticias destacadas */}
         {noticiasDestacadas.length > 0 && (
           <div className="mb-20">
-            <h2 className="text-2xl md:text-3xl font-serif font-bold text-yellow-400 mb-8 text-center">
+            <h2 className="text-2xl md:text-3xl font-serif font-bold text-yellow-600 mb-8 text-center">
               Noticias Destacadas
             </h2>
             <div className="grid md:grid-cols-2 gap-10">
@@ -168,10 +167,10 @@ export default function NoticiasPage(): ReactNode {
                   </div>
                   <div className="p-6 flex-1 flex flex-col justify-between">
                     <div>
-                      <span className="inline-block mb-2 px-3 py-1 bg-yellow-400/20 text-yellow-400 rounded-full text-xs font-semibold tracking-wider">
+                      <span className="inline-block mb-2 px-3 py-1 bg-yellow-700/20 text-yellow-600 rounded-full text-xs font-semibold tracking-wider">
                         {noticia.categoria}
                       </span>
-                      <h3 className="text-2xl font-serif font-bold text-yellow-400 mb-2 group-hover:underline underline-offset-4 transition-colors">
+                      <h3 className="text-2xl font-serif font-bold text-yellow-600 mb-2 group-hover:underline underline-offset-4 transition-colors">
                         {noticia.titulo}
                       </h3>
                       <p className="text-gray-200 mb-4 text-lg leading-relaxed">
@@ -190,7 +189,7 @@ export default function NoticiasPage(): ReactNode {
         )}
         {/* Últimas noticias */}
         <div>
-          <h2 className="text-2xl md:text-3xl font-serif font-bold text-yellow-400 mb-8 text-center">
+          <h2 className="text-2xl md:text-3xl font-serif font-bold text-yellow-600 mb-8 text-center">
             Últimas Noticias
           </h2>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -214,10 +213,10 @@ export default function NoticiasPage(): ReactNode {
                   />
                 </div>
                 <div className="p-4 flex-1 flex flex-col justify-between">
-                  <span className="inline-block mb-2 px-3 py-1 bg-yellow-400/10 text-yellow-300 rounded-full text-xs font-semibold tracking-wider">
+                  <span className="inline-block mb-2 px-3 py-1 bg-yellow-700/10 text-yellow-600 rounded-full text-xs font-semibold tracking-wider">
                     {noticia.categoria}
                   </span>
-                  <h3 className="text-lg font-serif font-bold text-yellow-400 mb-1 group-hover:underline underline-offset-4 transition-colors">
+                  <h3 className="text-lg font-serif font-bold text-yellow-600 mb-1 group-hover:underline underline-offset-4 transition-colors">
                     {noticia.titulo}
                   </h3>
                   <p className="text-gray-200 mb-2 text-base leading-relaxed line-clamp-3">

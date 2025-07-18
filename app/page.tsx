@@ -82,13 +82,13 @@ export default function EstudioJuridicoLanding() {
       <div className="fixed inset-0 pointer-events-none overflow-hidden">
         {/* Subtle Justice Scale Pattern */}
         <div className="absolute top-20 right-20 opacity-[0.02] transform rotate-12">
-          <Scale className="h-32 w-32 text-yellow-400" />
+          <Scale className="h-32 w-32 text-yellow-600" />
         </div>
         <div className="absolute bottom-40 left-20 opacity-[0.02] transform -rotate-12">
           <Scale className="h-24 w-24 text-white" />
         </div>
         <div className="absolute top-1/2 left-1/4 opacity-[0.015] transform rotate-45">
-          <Scale className="h-40 w-40 text-yellow-400" />
+          <Scale className="h-40 w-40 text-yellow-600" />
         </div>
 
         {/* Subtle Book/Document Pattern */}
@@ -96,7 +96,7 @@ export default function EstudioJuridicoLanding() {
           <FileText className="h-28 w-28 text-white" />
         </div>
         <div className="absolute bottom-1/3 right-1/4 opacity-[0.015] transform rotate-12">
-          <FileText className="h-36 w-36 text-yellow-400" />
+          <FileText className="h-36 w-36 text-yellow-600" />
         </div>
 
         {/* Geometric Legal Elements */}
@@ -127,24 +127,21 @@ export default function EstudioJuridicoLanding() {
                 className="brightness-110"
               />
             </div>
-            <span className="font-serif font-bold text-lg text-yellow-400">
+            <span className="font-serif font-bold text-lg text-yellow-600">
               Bustos & Roque
             </span>
-            <div className="md:hidden">
+            <div className="md:hidden flex items-center">
               <Button
                 variant="ghost"
                 size="sm"
-                className="text-white/80 hover:text-yellow-400 hover:bg-white/10"
-                onClick={() => {
-                  // Aquí se podría implementar un menú móvil
-                  scrollToSection("reserva");
-                }}
+                className="text-white/80 hover:text-yellow-600 hover:bg-white/10"
+                onClick={() => scrollToSection("reserva")}
               >
                 Reservar
               </Button>
               <a
                 href="/noticias"
-                className="ml-2 text-yellow-400 font-semibold text-sm px-3 py-2 rounded-lg hover:bg-yellow-400/10 transition-colors"
+                className="ml-2 text-yellow-600 font-semibold text-sm px-3 py-2 rounded-lg hover:bg-yellow-400/10 transition-colors"
               >
                 Noticias
               </a>
@@ -152,37 +149,37 @@ export default function EstudioJuridicoLanding() {
             <div className="hidden md:flex items-center space-x-6 lg:space-x-8">
               <button
                 onClick={() => scrollToSection("inicio")}
-                className="text-white/80 hover:text-yellow-400 transition-colors duration-300 text-sm lg:text-base"
+                className="text-white/80 hover:text-yellow-600 transition-colors duration-300 text-sm lg:text-base"
               >
                 Inicio
               </button>
               <button
                 onClick={() => scrollToSection("nosotros")}
-                className="text-white/80 hover:text-yellow-400 transition-colors duration-300 text-sm lg:text-base"
+                className="text-white/80 hover:text-yellow-600 transition-colors duration-300 text-sm lg:text-base"
               >
                 Nosotros
               </button>
               <button
                 onClick={() => scrollToSection("servicios")}
-                className="text-white/80 hover:text-yellow-400 transition-colors duration-300 text-sm lg:text-base"
+                className="text-white/80 hover:text-yellow-600 transition-colors duration-300 text-sm lg:text-base"
               >
                 Servicios
               </button>
               <button
                 onClick={() => scrollToSection("reserva")}
-                className="text-white/80 hover:text-yellow-400 transition-colors duration-300 text-sm lg:text-base"
+                className="text-white/80 hover:text-yellow-600 transition-colors duration-300 text-sm lg:text-base"
               >
                 Reservar
               </button>
               <button
                 onClick={() => scrollToSection("contacto")}
-                className="text-white/80 hover:text-yellow-400 transition-colors duration-300 text-sm lg:text-base"
+                className="text-white/80 hover:text-yellow-600 transition-colors duration-300 text-sm lg:text-base"
               >
                 Contacto
               </button>
               <a
                 href="/noticias"
-                className="text-yellow-400 font-semibold text-sm px-4 py-2 rounded-lg hover:bg-yellow-400/10 transition-colors border border-yellow-400/30 ml-2"
+                className="text-yellow-600 font-semibold text-sm px-4 py-2 rounded-lg hover:bg-yellow-400/10 transition-colors border border-yellow-400/30 ml-2"
               >
                 Noticias
               </a>
@@ -245,7 +242,7 @@ export default function EstudioJuridicoLanding() {
                   Estudio Jurídico
                 </span>
                 <br />
-                <span className="text-yellow-400 drop-shadow-lg">
+                <span className="text-yellow-600 drop-shadow-lg">
                   Bustos & Roque
                 </span>
               </h1>
@@ -262,11 +259,11 @@ export default function EstudioJuridicoLanding() {
               <div className="backdrop-blur-xl bg-white/5 border border-white/10 rounded-2xl p-8 max-w-4xl mx-auto">
                 <p className="text-xl md:text-2xl lg:text-3xl text-gray-100 leading-relaxed font-light">
                   Comprometidos con el{" "}
-                  <span className="text-yellow-400 font-semibold">
+                  <span className="text-yellow-600 font-semibold">
                     derecho,
                   </span>{" "}
                   orientados a la{" "}
-                  <span className="text-yellow-400 font-semibold">
+                  <span className="text-yellow-600 font-semibold">
                     excelencia
                   </span>
                 </p>
@@ -307,19 +304,19 @@ export default function EstudioJuridicoLanding() {
                   : "translate-y-10 opacity-0"
               }`}
             >
-              <div className="flex items-center space-x-2 text-yellow-400">
+              <div className="flex items-center space-x-2 text-yellow-600">
                 <Star className="h-5 w-5 fill-current" />
                 <span className="text-sm font-medium">
                   14+ Años de Experiencia
                 </span>
               </div>
-              {/* <div className="flex items-center space-x-2 text-yellow-400">
+              {/* <div className="flex items-center space-x-2 text-yellow-600">
                 <CheckCircle className="h-5 w-5" />
                 <span className="text-sm font-medium">
                   Excelencia Profesional
                 </span>
               </div> */}
-              <div className="flex items-center space-x-2 text-yellow-400">
+              <div className="flex items-center space-x-2 text-yellow-600">
                 <Scale className="h-5 w-5" />
                 <span className="text-sm font-medium">
                   fuero provincial y federal
@@ -340,11 +337,11 @@ export default function EstudioJuridicoLanding() {
           {/* Section Header */}
           <div className="text-center mb-20">
             <div className="inline-block backdrop-blur-xl bg-white/5 border border-white/10 rounded-2xl px-8 py-4 mb-8">
-              <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-yellow-400">
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-yellow-600">
                 Sobre Nosotros
               </h2>
             </div>
-            <div className="text-xl md:text-2xl text-gray-200 max-w-3xl mx-auto leading-relaxed whitespace-pre-line text-justify indent-[1.25rem]">
+            <div className="text-xl md:text-2xl text-gray-200 max-w-3xl mx-auto leading-relaxed whitespace-pre-line lg:text-justify indent-[1.25rem]">
               {`Somos un equipo de abogados asociados y egresados de la Facultad de Derecho de la Universidad Nacional de Córdoba, con más de 14 años de trayectoria en el ejercicio de la profesión. 
 Nos especializamos en distintas materias, específicamente en derecho comercial, derecho societario, derecho tributario-aduanero, derecho constitucional, derecho administrativo. Asimismo, nos dedicamos a la representación administrativa y judicial de obras sociales y empresas de medicina prepaga, utilizando la conciliación como herramienta primordial para la resolución de conflictos en etapa administrativa a los fines de disminuir la judicialidad.
 Brindamos atención integral y, mediante estrategias legales, priorizamos optimizar los recursos económicos y el capital de la empresa, evitando la litigiosidad. 
@@ -371,7 +368,7 @@ Representamos causas tanto en el fuero provincial como federal. Desde nuestra ex
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#153F35]/80 to-transparent" />
                     <div className="absolute bottom-6 left-6 right-6">
-                      <h3 className="text-3xl font-serif font-bold text-yellow-400 mb-2">
+                      <h3 className="text-3xl font-serif font-bold text-yellow-600 mb-2">
                         Diego Bustos
                       </h3>
                       <p className="text-yellow-200 font-medium">
@@ -380,7 +377,7 @@ Representamos causas tanto en el fuero provincial como federal. Desde nuestra ex
                     </div>
                   </div>
                   <div className="p-8">
-                    <p className="text-gray-200 leading-relaxed text-lg text-justify indent-5">
+                    <p className="text-gray-200 leading-relaxed text-lg text-center lg:text-justify indent-5">
                       Especialista en Derecho Penal, con más de 5 años de
                       experiencia en el fuero provincial y federal. Ha
                       intervenido en procesos penales de diversa complejidad,
@@ -393,8 +390,8 @@ Representamos causas tanto en el fuero provincial como federal. Desde nuestra ex
                       eficientes y evitar litigios innecesarios.
                     </p>
                     <div className="mt-6 flex items-center space-x-4">
-                      <div className="flex items-center space-x-1">
-                        <Star className="h-4 w-4 text-yellow-400 fill-current" />
+                      <div className="flex items-center gap-3">
+                        <Star className="h-8 w-8 text-yellow-600 fill-current" />
                         <span className="text-sm text-gray-300">
                           Actuación en toda la provincia de Córdoba y fuero
                           federal en todo el país
@@ -420,7 +417,7 @@ Representamos causas tanto en el fuero provincial como federal. Desde nuestra ex
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#153F35]/80 to-transparent" />
                     <div className="absolute bottom-6 left-6 right-6">
-                      <h3 className="text-3xl font-serif font-bold text-yellow-400 mb-2">
+                      <h3 className="text-3xl font-serif font-bold text-yellow-600 mb-2">
                         José Roque
                       </h3>
                       <p className="text-yellow-200 font-medium">
@@ -429,7 +426,7 @@ Representamos causas tanto en el fuero provincial como federal. Desde nuestra ex
                     </div>
                   </div>
                   <div className="p-8">
-                    <p className="text-gray-200 leading-relaxed text-lg text-justify indent-5">
+                    <p className="text-gray-200 leading-relaxed text-lg text-center lg:text-justify indent-5">
                       Especialista en Derecho Constitucional, Tributario,
                       Aduanero y Civil. Con más de 14 años de experiencia en el
                       Juzgado Federal de Primera Instancia N° 1 de Córdoba, se
@@ -443,8 +440,8 @@ Representamos causas tanto en el fuero provincial como federal. Desde nuestra ex
                       defensa del consumidor.
                     </p>
                     <div className="mt-6 flex items-center space-x-4">
-                      <div className="flex items-center space-x-1">
-                        <Star className="h-4 w-4 text-yellow-400 fill-current" />
+                      <div className="flex items-center gap-3">
+                        <Star className="h-8 w-8 text-yellow-600 fill-current" />
                         <span className="text-sm text-gray-300">
                           Derecho Tributario y Administrativo
                         </span>
@@ -464,7 +461,7 @@ Representamos causas tanto en el fuero provincial como federal. Desde nuestra ex
           {/* Section Header */}
           <div className="text-center mb-20">
             <div className="inline-block backdrop-blur-xl bg-white/5 border border-white/10 rounded-2xl px-8 py-4 mb-8">
-              <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-yellow-400">
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-yellow-600">
                 Áreas de Práctica
               </h2>
             </div>
@@ -530,11 +527,11 @@ Representamos causas tanto en el fuero provincial como federal. Desde nuestra ex
                   />
                   <div className="relative z-10">
                     <div
-                      className={`text-yellow-400 mb-6 flex justify-center p-4 rounded-2xl bg-gradient-to-br ${area.color} bg-opacity-10`}
+                      className={`text-yellow-600 mb-6 flex justify-center p-4 rounded-2xl bg-gradient-to-br ${area.color} bg-opacity-10`}
                     >
                       {area.icon}
                     </div>
-                    <h3 className="text-2xl font-serif font-bold mb-4 text-white group-hover:text-yellow-400 transition-colors duration-300">
+                    <h3 className="text-2xl font-serif font-bold mb-4 text-white group-hover:text-yellow-600 transition-colors duration-300">
                       {area.title}
                     </h3>
                     <p className="text-gray-200 leading-relaxed">
@@ -543,7 +540,7 @@ Representamos causas tanto en el fuero provincial como federal. Desde nuestra ex
                     <div className="mt-6">
                       <Button
                         variant="ghost"
-                        className="text-yellow-400 hover:text-yellow-300 hover:bg-yellow-400/10 p-0 h-auto font-semibold"
+                        className="text-yellow-600 hover:text-yellow-300 hover:bg-yellow-400/10 p-0 h-auto font-semibold"
                         onClick={() => scrollToSection("reserva")}
                       >
                         Reservar Consulta{" "}
@@ -564,22 +561,26 @@ Representamos causas tanto en el fuero provincial como federal. Desde nuestra ex
           {/* Section Header */}
           <div className="text-center mb-20">
             <div className="inline-block backdrop-blur-xl bg-white/5 border border-white/10 rounded-2xl px-8 py-4 mb-8">
-              <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-yellow-400">
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-yellow-600">
                 Jurisdicción
               </h2>
             </div>
-            <div className="text-xl md:text-2xl text-gray-200 max-w-3xl mx-auto leading-relaxed text-justify ">
-              Litigamos principalmente en la Provincia de Córdoba, actuando en el Foro General Provincial, la Cámara en lo Civil y Comercial, y demás tribunales con sede en <span className="font-semibold text-yellow-400">La Rioja 441</span>, Córdoba Capital. Además, representamos a clientes en toda la provincia y a nivel federal en todo el país.
+            <div className="text-xl md:text-2xl text-gray-200 max-w-3xl mx-auto leading-relaxed text-center lg:text-justify ">
+              Litigamos principalmente en la Provincia de Córdoba, actuando en
+              el Foro General Provincial, la Cámara en lo Civil y Comercial, y
+              demás tribunales con sede en{" "}
+              <span className="font-semibold text-yellow-600">
+                La Rioja 441
+              </span>
+              , Córdoba Capital. Además, representamos a clientes en toda la
+              provincia y a nivel federal en todo el país.
             </div>
-            <div className="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto mt-6 text-justify">
-              Nuestro conocimiento profundo del funcionamiento judicial en estas jurisdicciones nos permite ofrecer una defensa sólida, eficiente y cercana a las personas, adaptándonos a las necesidades de cada caso.
+            <div className="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto mt-6 l text-center lg:text-justify">
+              Nuestro conocimiento profundo del funcionamiento judicial en estas
+              jurisdicciones nos permite ofrecer una defensa sólida, eficiente y
+              cercana a las personas, adaptándonos a las necesidades de cada
+              caso.
             </div>
-            <a
-              href="/noticias"
-              className="inline-block mt-10 bg-yellow-400 text-[#153F35] font-bold px-8 py-4 rounded-full shadow-xl hover:bg-yellow-300 transition-colors text-lg border-2 border-yellow-400/50"
-            >
-              Ver Noticias & Novedades
-            </a>
           </div>
         </div>
       </section>
@@ -590,7 +591,7 @@ Representamos causas tanto en el fuero provincial como federal. Desde nuestra ex
           {/* Section Header */}
           <div className="text-center mb-12 sm:mb-16 md:mb-20">
             <div className="inline-block backdrop-blur-xl bg-white/5 border border-white/10 rounded-2xl px-4 sm:px-6 md:px-8 py-3 sm:py-4 mb-6 sm:mb-8">
-              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-serif font-bold text-yellow-400">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-serif font-bold text-yellow-600">
                 Reserva tu Consulta
               </h2>
             </div>
@@ -617,7 +618,7 @@ Representamos causas tanto en el fuero provincial como federal. Desde nuestra ex
           {/* Section Header */}
           <div className="text-center mb-10 sm:mb-16 md:mb-20">
             <div className="inline-block backdrop-blur-xl bg-white/5 border border-white/10 rounded-2xl px-4 sm:px-8 py-2 sm:py-4 mb-6 sm:mb-8">
-              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-yellow-400">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-yellow-600">
                 Contacto Rápido
               </h2>
             </div>
@@ -631,7 +632,7 @@ Representamos causas tanto en el fuero provincial como federal. Desde nuestra ex
             {/* Contact Form */}
             <Card className="backdrop-blur-xl bg-white/5 border border-white/10 shadow-2xl">
               <CardContent className="p-4 sm:p-6 md:p-10">
-                <h3 className="text-xl sm:text-2xl font-serif font-bold mb-6 sm:mb-8 text-yellow-400">
+                <h3 className="text-xl sm:text-2xl font-serif font-bold mb-6 sm:mb-8 text-yellow-600">
                   Envíanos un mensaje
                 </h3>
                 <form
@@ -716,7 +717,7 @@ Representamos causas tanto en el fuero provincial como federal. Desde nuestra ex
                   <CardContent className="p-4 sm:p-8">
                     <div className="flex items-center space-x-4 sm:space-x-6">
                       <div className="p-3 sm:p-4 rounded-2xl bg-gradient-to-br from-slate-600/20 to-slate-700/20">
-                        <MapPin className="h-7 w-7 sm:h-8 sm:w-8 text-yellow-400" />
+                        <MapPin className="h-7 w-7 sm:h-8 sm:w-8 text-yellow-600" />
                       </div>
                       <div>
                         <h3 className="font-bold text-lg sm:text-xl text-white mb-1 sm:mb-2">
@@ -735,7 +736,7 @@ Representamos causas tanto en el fuero provincial como federal. Desde nuestra ex
                   <CardContent className="p-4 sm:p-8">
                     <div className="flex items-center space-x-4 sm:space-x-6">
                       <div className="p-3 sm:p-4 rounded-2xl bg-gradient-to-br from-emerald-700/20 to-emerald-800/20">
-                        <Mail className="h-7 w-7 sm:h-8 sm:w-8 text-yellow-400" />
+                        <Mail className="h-7 w-7 sm:h-8 sm:w-8 text-yellow-600" />
                       </div>
                       <div>
                         <h3 className="font-bold text-lg sm:text-xl text-white mb-1 sm:mb-2">
@@ -753,7 +754,7 @@ Representamos causas tanto en el fuero provincial como federal. Desde nuestra ex
                   <CardContent className="p-4 sm:p-8">
                     <div className="flex items-center space-x-4 sm:space-x-6">
                       <div className="p-3 sm:p-4 rounded-2xl bg-gradient-to-br from-amber-700/20 to-amber-800/20">
-                        <Clock className="h-7 w-7 sm:h-8 sm:w-8 text-yellow-400" />
+                        <Clock className="h-7 w-7 sm:h-8 sm:w-8 text-yellow-600" />
                       </div>
                       <div>
                         <h3 className="font-bold text-lg sm:text-xl text-white mb-1 sm:mb-2">
@@ -815,7 +816,7 @@ Representamos causas tanto en el fuero provincial como federal. Desde nuestra ex
       </div>
 
       {/* Footer */}
-      <footer className="py-16 px-4 backdrop-blur-xl bg-[#0f2f26]/80 border-t border-white/10">
+      <footer className="py-10 px-4 backdrop-blur-xl bg-[#0f2f26]/80 border-t border-white/10">
         <div className="container max-w-7xl mx-auto">
           <div className="grid md:grid-cols-3 gap-12 items-center">
             {/* Logo & Tagline */}
@@ -824,12 +825,12 @@ Representamos causas tanto en el fuero provincial como federal. Desde nuestra ex
                 <Image
                   src="/images/logo-transparente.png"
                   alt="Estudio Jurídico Bustos & Roque"
-                  width={60}
-                  height={60}
+                  width={80}
+                  height={80}
                   className="brightness-110"
                 />
-                <div>
-                  <h3 className="font-serif font-bold text-xl text-yellow-400">
+                <div className="text-start">
+                  <h3 className="font-serif font-bold text-xl text-yellow-600">
                     Bustos & Roque
                   </h3>
                   <p className="text-gray-300 text-sm">Excelencia Jurídica</p>
@@ -837,18 +838,12 @@ Representamos causas tanto en el fuero provincial como federal. Desde nuestra ex
               </div>
               <p className="text-gray-300 italic">
                 Comprometidos con el{" "}
-                <span className="text-yellow-400 font-semibold">derecho</span>,
+                <span className="text-yellow-600 font-semibold">derecho</span>,
                 orientados a la{" "}
-                <span className="text-yellow-400 font-semibold">
+                <span className="text-yellow-600 font-semibold">
                   excelencia
                 </span>
               </p>
-              <a
-                href="/noticias"
-                className="inline-block mt-4 text-yellow-400 font-semibold underline underline-offset-4 hover:text-yellow-300 transition-colors text-base"
-              >
-                Noticias & Novedades
-              </a>
             </div>
 
             {/* Social Media */}
@@ -858,7 +853,7 @@ Representamos causas tanto en el fuero provincial como federal. Desde nuestra ex
                 href="https://instagram.com/bustosyroque.abogados"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center space-x-3 text-yellow-400 hover:text-yellow-300 transition-colors duration-300 backdrop-blur-xl bg-white/5 border border-white/10 rounded-full px-6 py-3"
+                className="inline-flex items-center space-x-3 text-yellow-600 hover:text-yellow-300 transition-colors duration-300 backdrop-blur-xl bg-white/5 border border-white/10 rounded-full px-6 py-3"
               >
                 <Instagram className="h-6 w-6" />
                 <span>@bustosyroque.abogados</span>
