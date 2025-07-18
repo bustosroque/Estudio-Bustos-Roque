@@ -19,7 +19,8 @@ const noticias: Noticia[] = [
     id: 1,
     slug: "nota-en-defensa-y-justicia",
     titulo: "Sin una justicia independiente no se puede construir la República",
-    resumen: "En esta nota de opinión, el Dr. José Roque analiza el rol del Poder Judicial en la Argentina actual y advierte que, debido a la influencia de los otros poderes del Estado, no se garantiza una verdadera independencia judicial. Sostiene que sin justicia autónoma no puede haber República ni democracia plena.",
+    resumen:
+      "En esta nota de opinión, el Dr. José Roque analiza el rol del Poder Judicial en la Argentina actual y advierte que, debido a la influencia de los otros poderes del Estado, no se garantiza una verdadera independencia judicial. Sostiene que sin justicia autónoma no puede haber República ni democracia plena.",
     fecha: "2024-06-01",
     autor: "Dr. Jose Roque",
     imagen: "/images/joseroquenoticias.png",
@@ -78,7 +79,7 @@ const noticias: Noticia[] = [
 ];
 
 const categorias = [
-  ...Array.from(new Set(noticias.map((n) => n.categoria).filter(Boolean)))
+  ...Array.from(new Set(noticias.map((n) => n.categoria).filter(Boolean))),
 ];
 
 export default function NoticiasPage(): ReactNode {
@@ -105,10 +106,16 @@ export default function NoticiasPage(): ReactNode {
             </span>
           </Link>
           <nav className="flex items-center space-x-6">
-            <Link href="/" className="text-white/80 hover:text-yellow-400 transition-colors text-sm font-semibold">
+            <Link
+              href="/"
+              className="text-white/80 hover:text-yellow-400 transition-colors text-sm font-semibold"
+            >
               Inicio
             </Link>
-            <Link href="/noticias" className="text-yellow-600 font-semibold text-sm px-4 py-2 rounded-lg hover:bg-yellow-400/10 transition-colors border border-yellow-400/30">
+            <Link
+              href="/noticias"
+              className="text-yellow-600 font-semibold text-sm px-4 py-2 rounded-lg hover:bg-yellow-400/10 transition-colors border border-yellow-400/30"
+            >
               Noticias
             </Link>
           </nav>
@@ -132,13 +139,18 @@ export default function NoticiasPage(): ReactNode {
             </h1>
           </div>
           <p className="text-xl md:text-2xl text-gray-200 max-w-3xl mx-auto leading-relaxed">
-            Descubrí las últimas novedades, experiencias, notas y casos de éxito de nuestro equipo de abogados. Esta sección se actualizará permanentemente y pronto estará integrada a nuestro CMS.
+            Descubrí las últimas novedades, experiencias, notas y casos de éxito
+            de nuestro equipo de abogados. Esta sección se actualizará
+            permanentemente y pronto estará integrada a nuestro CMS.
           </p>
         </div>
         {/* Categorías */}
         <div className="flex flex-wrap gap-3 justify-center mb-12">
           {categorias.map((cat) => (
-            <span key={cat} className="px-4 py-2 rounded-full bg-yellow-700/10 text-yellow-600 font-semibold text-sm border border-yellow-700/20">
+            <span
+              key={cat}
+              className="px-4 py-2 rounded-full bg-yellow-700/10 text-yellow-600 font-semibold text-sm border border-yellow-700/20"
+            >
               {cat}
             </span>
           ))}
@@ -164,6 +176,9 @@ export default function NoticiasPage(): ReactNode {
                       className="object-cover group-hover:scale-105 transition-transform duration-300"
                       priority
                     />
+                    <span className="absolute top-2 left-2 bg-black/70 text-yellow-700 rounded-full px-3 py-1 text-xs font-semibold shadow-lg">
+                      {noticia.autor}
+                    </span>
                   </div>
                   <div className="p-6 flex-1 flex flex-col justify-between">
                     <div>
@@ -178,7 +193,9 @@ export default function NoticiasPage(): ReactNode {
                       </p>
                     </div>
                     <div className="flex items-center justify-between text-gray-400 text-sm mt-2">
-                      <span>{new Date(noticia.fecha).toLocaleDateString()}</span>
+                      <span>
+                        {new Date(noticia.fecha).toLocaleDateString()}
+                      </span>
                       <span>{noticia.autor}</span>
                     </div>
                   </div>
@@ -211,6 +228,9 @@ export default function NoticiasPage(): ReactNode {
                     fill
                     className="object-cover group-hover:scale-105 transition-transform duration-300"
                   />
+                  <span className="absolute bottom-2 right-2 bg-black/70 text-yellow-700 rounded-full px-3 py-1 text-xs font-semibold shadow-lg">
+                    {noticia.autor}
+                  </span>
                 </div>
                 <div className="p-4 flex-1 flex flex-col justify-between">
                   <span className="inline-block mb-2 px-3 py-1 bg-yellow-700/10 text-yellow-600 rounded-full text-xs font-semibold tracking-wider">
@@ -234,4 +254,4 @@ export default function NoticiasPage(): ReactNode {
       </div>
     </div>
   );
-} 
+}

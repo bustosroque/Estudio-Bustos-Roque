@@ -170,18 +170,20 @@ export default async function NoticiaDetallePage({ params }: Props): Promise<Rea
             <span>{noticia.autor}</span>
           </div>
           {noticia.abogado && noticia.abogadoImagen && (
-            <div className="flex flex-col items-center mb-8">
-              <div className="w-28 h-28 rounded-full overflow-hidden border-4 border-yellow-700 shadow-lg mb-2">
+            <div className="flex items-center gap-4 bg-white/5 border border-white/10 rounded-xl shadow-lg px-4 py-3 mb-8 max-w-md mx-auto">
+              <div className="w-16 h-16 rounded-lg overflow-hidden border-2 border-yellow-700 shadow">
                 <Image
                   src={noticia.abogadoImagen}
                   alt={noticia.abogado}
-                  width={112}
-                  height={112}
+                  width={64}
+                  height={64}
                   className="object-cover w-full h-full"
                 />
               </div>
-              <div className="text-yellow-600 font-bold text-lg">{noticia.abogado}</div>
-              {/* <div className="text-gray-300 text-sm">Especialidad o breve bio</div> */}
+              <div>
+                <div className="text-yellow-700 font-bold text-lg">{noticia.abogado}</div>
+                <div className="text-gray-300 text-sm">Especialista en Derecho Constitucional y Tributario</div>
+              </div>
             </div>
           )}
         </div>
