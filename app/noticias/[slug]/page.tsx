@@ -2,9 +2,35 @@ import type { ReactNode } from "react";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
+import { Instagram } from "lucide-react";
 
 // Simulación de datos (en CMS esto vendrá de una API o base de datos)
 const noticias = [
+  {
+    slug: "violencia-en-cordoba-legitima-defensa",
+    titulo: "Violencia en Córdoba: denuncian que lo detuvieron tras haber actuado en legítima defensa",
+    fecha: "2025-07-23",
+    autor: "Redacción Vía Córdoba",
+    abogado: "Dres. Diego Rodi Bustos y José Manuel Roque",
+    abogadoImagen: "/images/joseroqueavatar.png",
+    imagen: "/images/camaraseguridad.png",
+    categoria: "Caso Penal",
+    contenido: `Un peón reservaba un lugar para un vehículo de transporte y fue agredido por otro automovilista que insistía en ubicarse allí. Los abogados piden su libertad.
+
+Días atrás, un trabajador de un depósito de encomiendas ubicado en la calle Balcarce, entre Entre Ríos y San Jerónimo de la ciudad de Córdoba, reservaba un lugar para estacionar. En la espera para que llegara un micro para descargar mercadería, se desató un hecho de violencia urbana que terminó con una persona detenida.
+
+Pero antes de que llegara el vehículo de transporte, se acercó un automovilista particular, en una Chevrolet Tracker blanca. Quiso estacionar justamente en el espacio que el trabajador reservaba con cajones de madera.
+
+Luego de discutir con el empleado del depósito, el conductor de la Tracker lo agredió, lo que se ve claramente en el video. Tras lo sucedido, el automovilista denunció al empleado del depósito de encomiendas y este fue detenido, con cargos de lesiones leves y amenazas.
+
+Se encuentra en UCA (Unidad de Contención del Aprehendido), E.P. 9, de nuestra ciudad. Vía Córdoba pudo saber que el automovilista es conserje de un hotel vecino al depósito; y la camioneta Chevrolet es propiedad de la dueña del hotel.
+
+Los doctores Diego Rodi Bustos y José Manuel Roque llevan la causa y, argumentando que el empleado del depósito de encomiendas actuó en legítima defensa ante un agresor que encima tiene una contextura bastante mayor, piden a la fiscalía la libertad de este.
+
+En diálogo con Vía Córdoba, los abogados comentaron: "Claramente, estamos ante un versión parcial o alterada de la realidad. Como defensores, estamos convencidos de la inocencia de nuestro asistido, un trabajador sostén de familia, que se encuentra detenido hace casi 10 días, mientras que el agresor está libre".
+
+Los profesionales del prestigioso estudio Bustos-Roque agregaron: "El pasado lunes, hemos presentado a la fiscalía la denuncia penal al conductor de la Tracker, acompañando con la prueba documental (el video) que acredita de manera contundente la legítima defensa".`
+  }, 
   {
     slug: "nota-en-defensa-y-justicia",
     titulo: "Nota en Diario Defensa y Justicia",
@@ -92,7 +118,13 @@ const palabrasNegrita = [
   "independencia",
   "República",
   "justicia independiente",
-  "Abogado",
+  "Abogados",
+  "legítima defensa",
+  "Diego Rodi Bustos",
+  "José Manuel Roque",
+  "fiscalía",
+  "inocencia",
+  "prueba documental",
   "¿nos encontramos viviendo en el modelo de Estado con el que soñó aquella asamblea convencional constituyente en aquella época?"
 ];
 
@@ -120,7 +152,7 @@ export default async function NoticiaDetallePage({ params }: Props): Promise<Rea
   if (!noticia) return notFound();
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#0f2f26] via-[#153F35] to-[#1a4a3e] text-white pb-24">
+    <div className="min-h-screen bg-gradient-to-br from-[#0f2f26] via-[#153F35] to-[#1a4a3e] text-white">
       {/* Header sticky */}
       <header className="sticky top-0 z-40 w-full backdrop-blur-xl bg-[#153F35]/90 border-b border-white/10 shadow-lg">
         <div className="container max-w-7xl mx-auto flex items-center justify-between py-4 px-4">
@@ -146,7 +178,7 @@ export default async function NoticiaDetallePage({ params }: Props): Promise<Rea
           </nav>
         </div>
       </header>
-      <div className="container max-w-3xl mx-auto pt-16 px-4">
+      <div className="container max-w-3xl mx-auto pt-16 pb-6 px-4">
         {/* Botón regresar */}
         <div className="mb-8">
           <Link
@@ -171,7 +203,7 @@ export default async function NoticiaDetallePage({ params }: Props): Promise<Rea
           </div>
           {noticia.abogado && noticia.abogadoImagen && (
             <div className="flex items-center gap-4 bg-white/5 border border-white/10 rounded-xl shadow-lg px-4 py-3 mb-8 max-w-md mx-auto">
-              <div className="w-16 h-16 rounded-lg overflow-hidden border-2 border-yellow-700 shadow">
+              {/* <div className="w-16 h-16 rounded-lg overflow-hidden border-2 border-yellow-700 shadow">
                 <Image
                   src={noticia.abogadoImagen}
                   alt={noticia.abogado}
@@ -179,7 +211,7 @@ export default async function NoticiaDetallePage({ params }: Props): Promise<Rea
                   height={64}
                   className="object-cover w-full h-full"
                 />
-              </div>
+              </div> */}
               <div>
                 <div className="text-yellow-700 font-bold text-lg">{noticia.abogado}</div>
                 <div className="text-gray-300 text-sm">Especialista en Derecho Constitucional y Tributario</div>
@@ -221,6 +253,62 @@ export default async function NoticiaDetallePage({ params }: Props): Promise<Rea
           </Link>
         </div>
       </div>
+      {/* Footer */}
+      <footer className="py-10 px-4 backdrop-blur-xl bg-[#0f2f26]/80 border-t border-white/10">
+        <div className="container max-w-7xl mx-auto">
+          <div className="grid md:grid-cols-3 gap-12 items-center">
+            {/* Logo & Tagline */}
+            <div className="text-center md:text-left">
+              <div className="flex items-center justify-center md:justify-start space-x-4 mb-4">
+                <Image
+                  src="/images/logo-transparente.png"
+                  alt="Estudio Jurídico Bustos & Roque"
+                  width={80}
+                  height={80}
+                  className="brightness-110"
+                />
+                <div className="text-start">
+                  <h3 className="font-serif font-bold text-xl text-yellow-600">
+                    Bustos & Roque
+                  </h3>
+                  <p className="text-gray-300 text-sm">Excelencia Jurídica</p>
+                </div>
+              </div>
+              <p className="text-gray-300 italic">
+                Comprometidos con el{" "}
+                <span className="text-yellow-600 font-semibold">derecho</span>,
+                orientados a la{" "}
+                <span className="text-yellow-600 font-semibold">
+                  excelencia
+                </span>
+              </p>
+            </div>
+
+            {/* Social Media */}
+            <div className="text-center">
+              <h4 className="font-semibold text-white mb-4">Síguenos</h4>
+              <a
+                href="https://instagram.com/bustosyroque.abogados"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center space-x-3 text-yellow-600 hover:text-yellow-300 transition-colors duration-300 backdrop-blur-xl bg-white/5 border border-white/10 rounded-full px-6 py-3"
+              >
+                <Instagram className="h-6 w-6" />
+                <span>@bustosyroque.abogados</span>
+              </a>
+            </div>
+
+            {/* Copyright */}
+            <div className="text-center md:text-right">
+              <p className="text-gray-400 text-sm">
+                © {new Date().getFullYear()} Estudio Jurídico Bustos & Roque
+                <br />
+                Todos los derechos reservados.
+              </p>
+            </div>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 } 
