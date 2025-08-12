@@ -59,7 +59,7 @@ export default function EstudioJuridicoLanding() {
     const message = encodeURIComponent(
       "Hola, me gustaría solicitar una consulta legal."
     );
-    window.open(`https://wa.me/5493521539991?text=${message}`, "_blank");
+    window.open(`https://wa.me/5493513199098?text=${message}`, "_blank");
   };
 
   const scrollToSection = (sectionId: string) => {
