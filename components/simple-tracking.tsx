@@ -1,10 +1,10 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 
-// Simple tracking component that doesn't interfere with rendering
-export function SimpleTracking() {
+// Internal tracking component that uses useSearchParams
+function TrackingComponent() {
   const searchParams = useSearchParams();
 
   useEffect(() => {
@@ -55,4 +55,13 @@ export function SimpleTracking() {
   }, [searchParams]);
 
   return null;
+}
+
+// Simple tracking component that doesn't interfere with rendering
+export function SimpleTracking() {
+  return (
+    <Suspense fallback={null}>
+      <TrackingComponent />
+    </Suspense>
+  );
 }
