@@ -296,6 +296,24 @@ export default function EstudioJuridicoLanding() {
               </Button>
             </div>
 
+            {/* Specialized Service Button */}
+            <div
+              className={`mt-8 transform transition-all duration-1000 delay-900 ${
+                isVisible
+                  ? "translate-y-0 opacity-100"
+                  : "translate-y-10 opacity-0"
+              }`}
+            >
+              <a
+                href="/pension-discapacidad"
+                className="group inline-flex items-center space-x-3 backdrop-blur-xl bg-gradient-to-r from-red-500/20 to-orange-500/20 border-2 border-red-400/50 text-white hover:bg-red-500/30 hover:border-red-400 px-8 py-4 text-lg rounded-full transition-all duration-300 transform hover:scale-105 shadow-xl"
+              >
+                <Shield className="h-6 w-6 text-red-400 group-hover:text-red-300" />
+                <span className="font-bold">¿Tu Pensión por Discapacidad fue Suspendida?</span>
+                <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
+              </a>
+            </div>
+
             {/* Trust Indicators */}
             <div
               className={`mt-16 flex flex-wrap justify-center items-center gap-8 transform transition-all duration-1000 delay-1000 ${
@@ -469,6 +487,34 @@ Representamos causas tanto en el fuero provincial como federal. Desde nuestra ex
               Brindamos asesoramiento integral en las principales ramas del
               derecho
             </p>
+          </div>
+
+          {/* Specialized Service Highlight */}
+          <div className="mb-12 text-center">
+            <Card className="backdrop-blur-xl bg-gradient-to-r from-red-500/10 to-orange-500/10 border-2 border-red-400/30 shadow-2xl max-w-4xl mx-auto">
+              <CardContent className="p-8">
+                <div className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-6">
+                  <div className="flex items-center space-x-4">
+                    <Shield className="h-12 w-12 text-red-400" />
+                    <div className="text-left">
+                      <h3 className="text-2xl font-serif font-bold text-white mb-2">
+                        Pensión por Discapacidad Suspendida
+                      </h3>
+                      <p className="text-gray-200 text-lg">
+                        Especialistas en recuperar pensiones suspendidas
+                      </p>
+                    </div>
+                  </div>
+                  <a
+                    href="/pension-discapacidad"
+                    className="group bg-gradient-to-r from-red-500 to-orange-500 hover:from-red-600 hover:to-orange-600 text-white font-bold px-8 py-4 text-lg rounded-full transition-all duration-300 transform hover:scale-105 shadow-xl flex items-center space-x-2"
+                  >
+                    <span>Consultar Ahora</span>
+                    <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                  </a>
+                </div>
+              </CardContent>
+            </Card>
           </div>
 
           {/* Services Grid */}
@@ -794,7 +840,7 @@ Representamos causas tanto en el fuero provincial como federal. Desde nuestra ex
           </div>
           {/* Teléfonos y email agregados al final de la sección de contacto */}
           <div className="mt-8 text-center text-lg text-gray-200 whitespace-pre-line">
-            {`Tel. 3515918047 – 3517555269\nestudiojurídicobustosroque@gmail.com`}
+            {`Tel: 351 319-9098\nestudiojurídicobustosroque@gmail.com`}
           </div>
         </div>
       </section>

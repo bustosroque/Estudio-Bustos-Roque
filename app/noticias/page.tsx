@@ -17,6 +17,18 @@ interface Noticia {
 const noticias: Noticia[] = [
   {
     id: 1,
+    slug: "amparo-colectivo-ley-emergencia-discapacidad",
+    titulo: "Presentaron el primer amparo colectivo contra el Decreto 681/2025 que suspende la Ley de Emergencia en Discapacidad",
+    resumen:
+      "Los Dres. Bustos y Roque interpusieron un amparo colectivo en los términos del artículo 43 de la Constitución Nacional contra el Decreto Presidencial 681/2025 que dispone suspender la ejecución de la Ley de Emergencia en Discapacidad 27.793, argumentando una alteración del orden republicano y vulneración de derechos de las personas con discapacidad.",
+    fecha: "2025-01-15",
+    autor: "Dr. Diego Bustos & Dr. José Roque",
+    imagen: "/noticia de amparo de discapacidad.png",
+    destacado: true,
+    categoria: "Derecho Constitucional",
+  },
+  {
+    id: 2,
     slug: "nota-en-defensa-y-justicia",
     titulo: "Sin una justicia independiente no se puede construir la República",
     resumen:
@@ -28,7 +40,7 @@ const noticias: Noticia[] = [
     categoria: "Opinión Jurídica",
   },
   {
-    id: 2,
+    id: 3,
     slug: "violencia-en-cordoba-legitima-defensa",
     titulo: "Violencia en Córdoba: denuncian que lo detuvieron tras haber actuado en legítima defensa",
     resumen: "El Estudio Bustos & Roque defiende a un trabajador detenido injustamente tras actuar en legítima defensa frente a una agresión. Presentaron pruebas contundentes (incluyendo video) para demostrar que su cliente, un sostén de familia, solo respondió a un ataque injustificado mientras cumplía con su trabajo.",

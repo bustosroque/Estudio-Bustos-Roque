@@ -130,18 +130,20 @@ Necesito asesoramiento.`;
       <nav className="fixed top-0 left-0 right-0 z-50 backdrop-blur-xl bg-[#153F35]/80 border-b border-white/10">
         <div className="container max-w-7xl mx-auto p-2">
           <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-3">
-              <Image
-                src="/images/logo-transparente.png"
-                alt="Estudio Jurídico Bustos & Roque"
-                width={50}
-                height={50}
-                className="brightness-110"
-              />
-              <span className="font-serif font-bold text-lg text-yellow-600">
-                Bustos & Roque
-              </span>
-            </div>
+            <a href="/">
+              <div className="flex items-center space-x-3">
+                <Image
+                  src="/images/logo-transparente.png"
+                  alt="Estudio Jurídico Bustos & Roque"
+                  width={50}
+                  height={50}
+                  className="brightness-110"
+                />
+                <span className="font-serif font-bold text-lg text-yellow-600">
+                  Bustos & Roque
+                </span>
+              </div>
+            </a>
             <div className="hidden md:flex items-center space-x-6 lg:space-x-8">
               <button
                 onClick={() => scrollToSection("inicio")}
@@ -181,11 +183,10 @@ Necesito asesoramiento.`;
           <div className="text-center relative z-10">
             {/* Logo with Glassmorphism */}
             <div
-              className={`mb-12 transform transition-all duration-1000 ${
-                isVisible
+              className={`mb-12 transform transition-all duration-1000 ${isVisible
                   ? "translate-y-0 opacity-100"
                   : "translate-y-10 opacity-0"
-              }`}
+                }`}
             >
               <div
                 className="inline-block p-8 rounded-3xl backdrop-blur-xl bg-white/5 border border-white/10 shadow-2xl"
@@ -208,11 +209,10 @@ Necesito asesoramiento.`;
 
             {/* Main Heading */}
             <div
-              className={`mb-8 transform transition-all duration-1000 delay-300 ${
-                isVisible
+              className={`mb-8 transform transition-all duration-1000 delay-300 ${isVisible
                   ? "translate-y-0 opacity-100"
                   : "translate-y-10 opacity-0"
-              }`}
+                }`}
             >
               <h1 className="text-4xl md:text-6xl lg:text-7xl font-serif font-bold mb-6 leading-tight">
                 <span className="bg-gradient-to-r from-white via-yellow-200 to-yellow-400 bg-clip-text text-transparent">
@@ -227,11 +227,10 @@ Necesito asesoramiento.`;
 
             {/* Tagline */}
             <div
-              className={`mb-12 transform transition-all duration-1000 delay-500 ${
-                isVisible
+              className={`mb-12 transform transition-all duration-1000 delay-500 ${isVisible
                   ? "translate-y-0 opacity-100"
                   : "translate-y-10 opacity-0"
-              }`}
+                }`}
             >
               <div className="backdrop-blur-xl bg-white/5 border border-white/10 rounded-2xl p-8 max-w-4xl mx-auto">
                 <p className="text-xl md:text-2xl lg:text-3xl text-gray-100 leading-relaxed font-light">
@@ -247,11 +246,10 @@ Necesito asesoramiento.`;
 
             {/* CTA Button */}
             <div
-              className={`flex flex-col sm:flex-row gap-6 justify-center items-center transform transition-all duration-1000 delay-700 ${
-                isVisible
+              className={`flex flex-col sm:flex-row gap-6 justify-center items-center transform transition-all duration-1000 delay-700 ${isVisible
                   ? "translate-y-0 opacity-100"
                   : "translate-y-10 opacity-0"
-              }`}
+                }`}
             >
               <Button
                 size="lg"
@@ -271,11 +269,10 @@ Necesito asesoramiento.`;
 
             {/* Trust Indicators */}
             <div
-              className={`mt-16 flex flex-wrap justify-center items-center gap-8 transform transition-all duration-1000 delay-1000 ${
-                isVisible
+              className={`mt-16 flex flex-wrap justify-center items-center gap-8 transform transition-all duration-1000 delay-1000 ${isVisible
                   ? "translate-y-0 opacity-100"
                   : "translate-y-10 opacity-0"
-              }`}
+                }`}
             >
               <div className="flex items-center space-x-2 text-yellow-600">
                 <Star className="h-5 w-5 fill-current" />

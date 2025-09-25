@@ -7,6 +7,44 @@ import { Instagram } from "lucide-react";
 // Simulación de datos (en CMS esto vendrá de una API o base de datos)
 const noticias = [
   {
+    slug: "amparo-colectivo-ley-emergencia-discapacidad",
+    titulo: "Presentaron el primer amparo colectivo contra el Decreto 681/2025 que suspende la Ley de Emergencia en Discapacidad",
+    fecha: "2025-09-25",
+    autor: "Redacción Canal 10 Córdoba",
+    abogado: "Dres. Diego Bustos y José Roque",
+    abogadoImagen: "/images/joseroqueavatar.png",
+    imagen: "/noticia de amparo de discapacidad.png",
+    categoria: "Derecho Constitucional",
+    contenido: `En el día de la fecha, los Dres. Diego Bustos y José Roque del Estudio Jurídico Bustos & Roque presentaron el primer amparo colectivo en contra del Decreto Presidencial 681/2025 que dispone la suspensión de la Ley de Emergencia en Discapacidad 27.793.
+
+El amparo fue interpuesto en los términos del artículo 43 segundo párrafo de la Constitución Nacional, argumentando que existe una alteración en el orden republicano debido a la interferencia del Poder Ejecutivo sobre el Poder Legislativo.
+
+Los abogados sostienen que se ha afectado gravemente y se han vulnerado los derechos de este sector poblacional, por lo que han interpuesto un amparo que sea extensivo a toda la población de personas con discapacidad.
+
+**¿Qué requieren en el amparo?**
+
+Básicamente, lo que están pidiendo en el amparo es:
+
+1. **La declaración de inconstitucionalidad del Decreto 681/2025**
+2. **Que se ordene al Congreso seguir con la ejecución de la Ley de Emergencia en Discapacidad 27.793**
+
+**Fundamentos constitucionales**
+
+El Dr. José Roque explicó durante la entrevista televisiva que "entendemos que hay una alteración en el orden republicano que hay una interferencia del poder ejecutivo al poder legislativo y por eso tenemos en cuenta que se ha afectado gravemente y se han vulnerado los derechos de este sector poblacional".
+
+**Impacto del caso**
+
+Este amparo colectivo representa un hito en la defensa de los derechos de las personas con discapacidad, ya que busca garantizar la continuidad de la Ley de Emergencia en Discapacidad, que es fundamental para el acceso a derechos y la igualdad de condiciones de este sector de la población.
+
+La presentación fue cubierta por Canal 10 Córdoba, donde los abogados explicaron los fundamentos constitucionales de su acción y el impacto que tendría la suspensión de la ley para las personas con discapacidad en todo el país.
+
+**Sobre la Ley de Emergencia en Discapacidad 27.793**
+
+Esta ley fue sancionada para garantizar la igualdad de condiciones y acceso a los derechos de las personas con discapacidad, estableciendo medidas de emergencia para asegurar el cumplimiento de los derechos fundamentales de este sector poblacional.
+
+El Decreto 681/2025, que suspende su ejecución, ha generado preocupación en la comunidad de personas con discapacidad y sus organizaciones, ya que podría significar un retroceso en los avances logrados en materia de inclusión y accesibilidad.`
+  },
+  {
     slug: "violencia-en-cordoba-legitima-defensa",
     titulo: "Violencia en Córdoba: denuncian que lo detuvieron tras haber actuado en legítima defensa",
     fecha: "2025-07-23",
@@ -125,7 +163,31 @@ const palabrasNegrita = [
   "fiscalía",
   "inocencia",
   "prueba documental",
-  "¿nos encontramos viviendo en el modelo de Estado con el que soñó aquella asamblea convencional constituyente en aquella época?"
+  "¿nos encontramos viviendo en el modelo de Estado con el que soñó aquella asamblea convencional constituyente en aquella época?",
+  // Nuevas palabras para el amparo de discapacidad
+  "amparo colectivo",
+  "Decreto 681/2025",
+  "Ley de Emergencia en Discapacidad 27.793",
+  "artículo 43",
+  "segundo párrafo",
+  "Constitución Nacional",
+  "alteración del orden republicano",
+  "interferencia del Poder Ejecutivo",
+  "Poder Legislativo",
+  "derechos de las personas con discapacidad",
+  "sector poblacional",
+  "declaración de inconstitucionalidad",
+  "Congreso",
+  "ejecución de la ley",
+  "Dres. Diego Bustos y José Roque",
+  "Estudio Jurídico Bustos & Roque",
+  "igualdad de condiciones",
+  "acceso a los derechos",
+  "Canal 10 Córdoba",
+  "fundamentos constitucionales",
+  "hito en la defensa",
+  "comunidad de personas con discapacidad",
+  "inclusión y accesibilidad"
 ];
 
 function resaltarNegrita(texto: string) {
@@ -202,7 +264,7 @@ export default async function NoticiaDetallePage({ params }: Props): Promise<Rea
             <span>{noticia.autor}</span>
           </div>
           {noticia.abogado && noticia.abogadoImagen && (
-            <div className="flex items-center gap-4 bg-white/5 border border-white/10 rounded-xl shadow-lg px-4 py-3 mb-8 max-w-md mx-auto">
+            <div className="flex justify-center items-center gap-4 bg-white/5 border border-white/10 rounded-xl shadow-lg px-4 py-3 mb-8">
               {/* <div className="w-16 h-16 rounded-lg overflow-hidden border-2 border-yellow-700 shadow">
                 <Image
                   src={noticia.abogadoImagen}
