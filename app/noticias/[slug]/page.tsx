@@ -7,6 +7,53 @@ import { Instagram } from "lucide-react";
 // Simulación de datos (en CMS esto vendrá de una API o base de datos)
 const noticias = [
   {
+    slug: "agresion-sebastian-elcano-representacion-legal",
+    titulo: "El Estudio Jurídico Bustos & Roque representa a la víctima de la brutal agresión en Sebastián Elcano",
+    fecha: "2025-10-18",
+    autor: "Redacción Estudio Bustos & Roque",
+    abogado: "Dres. Diego Bustos y José Roque",
+    abogadoImagen: "/images/joseroqueavatar.png",
+    imagen: "/images/sebastianelcano.png",
+    categoria: "Derecho Penal",
+    contenido: `Durante los festejos del 57° aniversario de la localidad de Sebastián Elcano, un joven de 23 años identificado como César Olivera fue víctima de una brutal agresión que conmocionó a la comunidad. El ataque, perpetrado por un grupo de personas, incluyó múltiples golpes y patadas en la cabeza que lo dejaron inconsciente en la vía pública. El hecho fue registrado en video, lo que permitió la rápida identificación de los agresores y derivó en cinco detenciones.
+
+**Representación legal del Estudio Bustos & Roque**
+
+Los abogados del Estudio Jurídico Bustos & Roque asumieron la representación legal de la víctima y se encuentran impulsando activamente las acciones judiciales correspondientes. El equipo legal trabaja para que el hecho sea correctamente calificado en sede penal y que la investigación avance con la celeridad que el caso amerita.
+
+Desde el inicio de su intervención, los profesionales del estudio han manifestado su compromiso con la búsqueda de justicia y la defensa integral de los derechos de César Olivera, quien enfrenta no solo las secuelas físicas sino también el impacto psicológico de la violencia sufrida.
+
+**Declaraciones de los abogados y solicitudes judiciales**
+
+En declaraciones públicas realizadas a través de medios de comunicación locales, los Dres. Diego Bustos y José Roque expresaron su respaldo al cambio de carátula hacia una figura penal más grave, acorde a la entidad de los hechos ocurridos. La violencia ejercida por un grupo de personas contra una sola víctima configura un agravante que debe ser contemplado en la calificación legal del delito.
+
+Los representantes legales exigieron medidas de protección judicial para la víctima, incluyendo restricciones de acercamiento hacia los agresores identificados. Asimismo, solicitaron a la fiscalía interviniente que se adopten medidas urgentes y se conduzca la investigación con firmeza y celeridad, considerando la gravedad de los hechos y la existencia de prueba videográfica contundente.
+
+Los abogados remarcaron el impacto social del caso y la necesidad de que se siente un precedente ejemplar contra este tipo de violencia grupal. "Este tipo de ataques no pueden quedar impunes. La sociedad demanda respuestas contundentes frente a la violencia desmedida", expresaron los profesionales.
+
+**Estado de salud de la víctima y daños sufridos**
+
+César Olivera sufrió múltiples golpes de puño y patadas en diversas partes del cuerpo, siendo particularmente graves los impactos recibidos en la cabeza, que le provocaron la pérdida de conocimiento en el lugar del hecho. Tras el ataque, fue trasladado de urgencia a un centro asistencial, donde se le realizaron los primeros estudios médicos.
+
+Actualmente, la víctima se encuentra bajo seguimiento médico para evaluar la extensión de las lesiones físicas y las posibles secuelas neurológicas que pudieran derivar de los traumatismos craneales recibidos. Los estudios complementarios continúan en curso para determinar con precisión el alcance del daño sufrido.
+
+Paralelamente, se ha iniciado una evaluación psicológica para dimensionar el daño moral y emocional que este traumático episodio ha ocasionado al joven, quien ha manifestado temor y angustia tras la agresión sufrida.
+
+**Acciones legales en curso**
+
+El Estudio Jurídico Bustos & Roque ha iniciado las gestiones legales para requerir una reparación integral por los daños físicos, psicológicos y morales sufridos por su representado. Esta reparación deberá contemplar no solo los gastos médicos y terapéuticos, sino también el daño moral, el sufrimiento padecido y las eventuales secuelas permanentes.
+
+Los abogados han solicitado formalmente medidas cautelares de restricción de acercamiento hacia los agresores, a fin de garantizar la seguridad e integridad física y psicológica de la víctima durante el transcurso del proceso judicial.
+
+Asimismo, han peticionado que en la calificación legal del hecho se contemple expresamente la violencia grupal como agravante, dado que el ataque fue perpetrado por múltiples personas actuando en forma coordinada contra una sola víctima que se encontraba en situación de total indefensión.
+
+**Compromiso con la justicia**
+
+El Estudio Jurídico Bustos & Roque continuará acompañando a la víctima y su familia en todo el proceso judicial, velando por sus derechos y trabajando incansablemente para el avance de una causa justa que debe sentar un precedente contundente contra la violencia.
+
+Los profesionales han manifestado su convicción de que este caso debe servir como ejemplo de que la violencia desmedida, especialmente cuando es ejercida grupalmente, no puede encontrar impunidad en el sistema de justicia. "Nuestro compromiso es lograr que se haga justicia y que quien sufrió este ataque brutal reciba la reparación integral que merece, mientras los responsables asumen las consecuencias penales de sus actos", concluyeron los abogados del estudio.`
+  },
+  {
     slug: "amparo-colectivo-ley-emergencia-discapacidad",
     titulo: "Presentaron el primer amparo colectivo contra el Decreto 681/2025 que suspende la Ley de Emergencia en Discapacidad",
     fecha: "2025-09-25",
@@ -187,7 +234,30 @@ const palabrasNegrita = [
   "fundamentos constitucionales",
   "hito en la defensa",
   "comunidad de personas con discapacidad",
-  "inclusión y accesibilidad"
+  "inclusión y accesibilidad",
+  // Nuevas palabras para el caso de Sebastián Elcano
+  "César Olivera",
+  "Sebastián Elcano",
+  "brutal agresión",
+  "representación legal",
+  "violencia grupal",
+  "medidas de protección judicial",
+  "reparación integral",
+  "medidas cautelares",
+  "restricción de acercamiento",
+  "cambio de carátula",
+  "figura penal más grave",
+  "agravante",
+  "prueba videográfica",
+  "secuelas neurológicas",
+  "daño moral y emocional",
+  "traumatismos craneales",
+  "evaluación psicológica",
+  "cinco detenidos",
+  "precedente ejemplar",
+  "violencia desmedida",
+  "Este tipo de ataques no pueden quedar impunes",
+  "consecuencias penales"
 ];
 
 function resaltarNegrita(texto: string) {

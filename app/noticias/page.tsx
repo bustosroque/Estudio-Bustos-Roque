@@ -16,6 +16,18 @@ interface Noticia {
 
 const noticias: Noticia[] = [
   {
+    id: 4,
+    slug: "agresion-sebastian-elcano-representacion-legal",
+    titulo: "El Estudio Jurídico Bustos & Roque representa a la víctima de la brutal agresión en Sebastián Elcano",
+    resumen:
+      "Los abogados del Estudio Jurídico Bustos & Roque asumieron la representación de César Olivera, joven de 23 años brutalmente agredido durante los festejos del 57° aniversario de Sebastián Elcano. El ataque, registrado en video, dejó a la víctima inconsciente y resultó en cinco detenidos. El estudio impulsa acciones judiciales para una correcta calificación del delito y reparación integral.",
+    fecha: "2025-10-18",
+    autor: "Dr. Diego Bustos & Dr. José Roque",
+    imagen: "/images/sebastianelcano.png",
+    destacado: true,
+    categoria: "Derecho Penal",
+  },
+  {
     id: 1,
     slug: "amparo-colectivo-ley-emergencia-discapacidad",
     titulo: "Presentaron el primer amparo colectivo contra el Decreto 681/2025 que suspende la Ley de Emergencia en Discapacidad",
