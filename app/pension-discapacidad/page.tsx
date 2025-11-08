@@ -13,6 +13,7 @@ import {
   getStoredUtmParameters,
 } from "@/components/tracking";
 import { SimpleTracking } from "@/components/simple-tracking";
+import { SharedHeader } from "@/components/shared-header";
 import {
   CheckCircle,
   MessageCircle,
@@ -127,52 +128,7 @@ Necesito asesoramiento.`;
       </div>
 
       {/* Navigation */}
-      <nav className="fixed top-0 left-0 right-0 z-50 backdrop-blur-xl bg-[#153F35]/80 border-b border-white/10">
-        <div className="container max-w-7xl mx-auto p-2">
-          <div className="flex items-center justify-between">
-            <a href="/">
-              <div className="flex items-center space-x-3">
-                <Image
-                  src="/images/logo-transparente.png"
-                  alt="Estudio Jurídico Bustos & Roque"
-                  width={50}
-                  height={50}
-                  className="brightness-110"
-                />
-                <span className="font-serif font-bold text-lg text-yellow-600">
-                  Bustos & Roque
-                </span>
-              </div>
-            </a>
-            <div className="hidden md:flex items-center space-x-6 lg:space-x-8">
-              <button
-                onClick={() => scrollToSection("inicio")}
-                className="text-white/80 hover:text-yellow-600 transition-colors duration-300 text-sm lg:text-base"
-              >
-                Inicio
-              </button>
-              <button
-                onClick={() => scrollToSection("requisitos")}
-                className="text-white/80 hover:text-yellow-600 transition-colors duration-300 text-sm lg:text-base"
-              >
-                Requisitos
-              </button>
-              <button
-                onClick={() => scrollToSection("contacto")}
-                className="text-white/80 hover:text-yellow-600 transition-colors duration-300 text-sm lg:text-base"
-              >
-                Contacto
-              </button>
-              <a
-                href="/"
-                className="text-yellow-600 font-semibold text-sm px-4 py-2 rounded-lg hover:bg-yellow-400/10 transition-colors border border-yellow-400/30 ml-2"
-              >
-                Volver al Sitio
-              </a>
-            </div>
-          </div>
-        </div>
-      </nav>
+      <SharedHeader />
 
       {/* Hero Section */}
       <section
