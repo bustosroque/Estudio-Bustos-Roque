@@ -8,6 +8,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent } from "@/components/ui/card";
 import { BookingForm } from "@/components/booking-form";
+import { SharedHeader } from "@/components/shared-header";
 import {
   Scale,
   Shield,
@@ -115,85 +116,7 @@ export default function EstudioJuridicoLanding() {
       </div>
 
       {/* Navigation */}
-      <nav className="fixed top-0 left-0 right-0 z-50 backdrop-blur-xl bg-[#153F35]/80 border-b border-white/10">
-        <div className="container max-w-7xl mx-auto p-2">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-3">
-              <Image
-                src="/images/logo-transparente.png"
-                alt="Estudio Jurídico Bustos & Roque"
-                width={50}
-                height={50}
-                className="brightness-110"
-              />
-            </div>
-            <span className="font-serif font-bold text-lg text-yellow-600">
-              Bustos & Roque
-            </span>
-            <div className="md:hidden flex items-center">
-              <Button
-                variant="ghost"
-                size="sm"
-                className="text-white/80 hover:text-yellow-600 hover:bg-white/10"
-                onClick={() => scrollToSection("reserva")}
-              >
-                Reservar
-              </Button>
-              <a
-                href="/noticias"
-                className="ml-2 text-yellow-600 font-semibold text-sm px-3 py-2 rounded-lg hover:bg-yellow-400/10 transition-colors"
-              >
-                Noticias
-              </a>
-            </div>
-            <div className="hidden md:flex items-center space-x-6 lg:space-x-8">
-              <button
-                onClick={() => scrollToSection("inicio")}
-                className="text-white/80 hover:text-yellow-600 transition-colors duration-300 text-sm lg:text-base"
-              >
-                Inicio
-              </button>
-              <button
-                onClick={() => scrollToSection("nosotros")}
-                className="text-white/80 hover:text-yellow-600 transition-colors duration-300 text-sm lg:text-base"
-              >
-                Nosotros
-              </button>
-              <button
-                onClick={() => scrollToSection("servicios")}
-                className="text-white/80 hover:text-yellow-600 transition-colors duration-300 text-sm lg:text-base"
-              >
-                Servicios
-              </button>
-              <button
-                onClick={() => scrollToSection("reserva")}
-                className="text-white/80 hover:text-yellow-600 transition-colors duration-300 text-sm lg:text-base"
-              >
-                Reservar
-              </button>
-              <button
-                onClick={() => scrollToSection("contacto")}
-                className="text-white/80 hover:text-yellow-600 transition-colors duration-300 text-sm lg:text-base"
-              >
-                Contacto
-              </button>
-              <a
-                href="/noticias"
-                className="text-yellow-600 font-semibold text-sm px-4 py-2 rounded-lg hover:bg-yellow-400/10 transition-colors border border-yellow-400/30 ml-2"
-              >
-                Noticias
-              </a>
-            </div>
-            {/* <Button
-              onClick={handleWhatsApp}
-              className="bg-gradient-to-r from-yellow-500 to-yellow-600 hover:from-yellow-600 hover:to-yellow-700 text-black font-semibold px-6 py-2 rounded-full transition-all duration-300 transform hover:scale-105"
-            >
-              <MessageCircle className="mr-2 h-4 w-4" />
-              WhatsApp
-            </Button> */}
-          </div>
-        </div>
-      </nav>
+      <SharedHeader />
 
       {/* Hero Section */}
       <section

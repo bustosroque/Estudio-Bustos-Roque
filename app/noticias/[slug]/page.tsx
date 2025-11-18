@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import { Instagram } from "lucide-react";
+import { SharedHeader } from "@/components/shared-header";
 
 // Simulación de datos (en CMS esto vendrá de una API o base de datos)
 const noticias = [
@@ -286,30 +287,7 @@ export default async function NoticiaDetallePage({ params }: Props): Promise<Rea
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#0f2f26] via-[#153F35] to-[#1a4a3e] text-white">
       {/* Header sticky */}
-      <header className="sticky top-0 z-40 w-full backdrop-blur-xl bg-[#153F35]/90 border-b border-white/10 shadow-lg">
-        <div className="container max-w-7xl mx-auto flex items-center justify-between py-4 px-4">
-          <Link href="/" className="flex items-center space-x-3">
-            <Image
-              src="/images/logo-transparente.png"
-              alt="Estudio Jurídico Bustos & Roque"
-              width={40}
-              height={40}
-              className="brightness-110"
-            />
-            <span className="font-serif font-bold text-lg text-yellow-600">
-              Bustos & Roque
-            </span>
-          </Link>
-          <nav className="flex items-center space-x-6">
-            <Link href="/" className="text-white/80 hover:text-yellow-600 transition-colors text-sm font-semibold">
-              Inicio
-            </Link>
-            <Link href="/noticias" className="text-yellow-600 font-semibold text-sm px-4 py-2 rounded-lg hover:bg-yellow-600/10 transition-colors border border-yellow-600/30">
-              Noticias
-            </Link>
-          </nav>
-        </div>
-      </header>
+      <SharedHeader />
       <div className="container max-w-3xl mx-auto pt-16 pb-6 px-4">
         {/* Botón regresar */}
         <div className="mb-8">
