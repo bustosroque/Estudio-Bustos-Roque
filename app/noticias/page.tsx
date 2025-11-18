@@ -15,7 +15,6 @@ interface Noticia {
   categoria?: string;
 }
 
-
 const noticias: Noticia[] = [
   {
     id: 4,
