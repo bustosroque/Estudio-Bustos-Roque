@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { addLeadToSheet } from '@/lib/google-sheets';
 
 interface LeadData {
   tipoProblema: string;
@@ -82,16 +83,36 @@ ${data.utm_campaign ? `📊 *UTM Campaign:* ${data.utm_campaign}` : ''}
       console.log('==================');
     }
 
-    // Guardar en JSON local (opcional, para backup)
-    // En producción, esto podría guardarse en una base de datos
+    // Preparar datos del lead
     const leadRecord = {
       ...data,
-      timestamp: new Date().toISOString(),
+      timestamp: new Date().toLocaleString('es-AR', { 
+        timeZone: 'America/Argentina/Buenos_Aires',
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit',
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
+      }),
       ip: request.headers.get('x-forwarded-for') || request.headers.get('x-real-ip') || 'unknown',
     };
 
     // Log para desarrollo
     console.log('Lead recibido:', JSON.stringify(leadRecord, null, 2));
+
+    // Guardar en Google Sheets
+    try {
+      const sheetResult = await addLeadToSheet(leadRecord);
+      if (sheetResult.success) {
+        console.log('✅ Lead guardado en Google Sheets');
+      } else {
+        console.warn('⚠️ No se pudo guardar en Google Sheets:', sheetResult.error);
+      }
+    } catch (sheetError) {
+      console.error('❌ Error al guardar en Google Sheets:', sheetError);
+      // Continuar aunque falle Google Sheets (no queremos perder el lead)
+    }
 
     return NextResponse.json({
       success: true,
