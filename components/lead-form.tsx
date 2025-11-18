@@ -16,6 +16,7 @@ import {
 import { Card, CardContent } from "@/components/ui/card";
 import { CheckCircle, ArrowRight, ArrowLeft, Loader2 } from "lucide-react";
 import { getStoredUtmParameters } from "@/components/tracking";
+import { trackLead, trackCompleteRegistration } from "@/components/meta-pixel-events";
 
 // Declarar tipos para Meta Pixel y Google Analytics
 declare global {
@@ -154,16 +155,17 @@ export function LeadForm({ onSuccess }: LeadFormProps) {
         throw new Error("Error al enviar el formulario");
       }
 
-      // Track Meta Pixel events
-      if (typeof window !== "undefined" && window.fbq) {
-        window.fbq("track", "Lead", {
-          content_name: "Obra Social Lead Form",
-          content_category: formData.tipoProblema,
-        });
-        window.fbq("track", "CompleteRegistration", {
-          content_name: "Obra Social Lead Form",
-        });
-      }
+      // Track Meta Pixel events estándar
+      trackLead({
+        content_name: "Obra Social Lead Form",
+        content_category: formData.tipoProblema,
+        source: "form_submit",
+      });
+      
+      trackCompleteRegistration({
+        content_name: "Obra Social Lead Form",
+        status: true,
+      });
 
       // Track Google Analytics
       if (typeof window !== "undefined" && window.gtag) {

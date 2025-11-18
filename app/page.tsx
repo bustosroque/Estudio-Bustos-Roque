@@ -8,6 +8,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent } from "@/components/ui/card";
 import { BookingForm } from "@/components/booking-form";
+import { trackContact, trackViewContent, trackSchedule } from "@/components/meta-pixel-events";
 import { SharedHeader } from "@/components/shared-header";
 import {
   Scale,
@@ -36,6 +37,12 @@ export default function EstudioJuridicoLanding() {
 
   useEffect(() => {
     setIsVisible(true);
+    
+    // Track Meta Pixel ViewContent (evento estándar)
+    trackViewContent({
+      content_name: "Homepage - Estudio Jurídico",
+      content_category: "Legal Services",
+    });
   }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -47,6 +54,14 @@ export default function EstudioJuridicoLanding() {
         body: JSON.stringify(formData),
       });
       if (!response.ok) throw new Error("Error al enviar el mensaje");
+      
+      // Track Meta Pixel eventos estándar
+      trackContact({
+        content_name: "Contact Form - Homepage",
+        method: "form",
+        content_category: "Contact",
+      });
+
       alert(
         "¡Tu mensaje fue enviado correctamente! Nos contactaremos a la brevedad."
       );
@@ -57,6 +72,13 @@ export default function EstudioJuridicoLanding() {
   };
 
   const handleWhatsApp = () => {
+    // Track Meta Pixel eventos estándar
+    trackContact({
+      content_name: "WhatsApp Click - Homepage",
+      method: "whatsapp",
+      content_category: "Contact",
+    });
+
     const message = encodeURIComponent(
       "Hola, me gustaría solicitar una consulta legal."
     );

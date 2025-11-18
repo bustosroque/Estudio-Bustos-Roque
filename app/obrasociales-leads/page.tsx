@@ -32,6 +32,12 @@ import {
 import { getStoredUtmParameters } from "@/components/tracking";
 import Script from "next/script";
 import { AnimatedBackground } from "@/components/animated-background";
+import {
+  trackViewContent,
+  trackContact,
+  trackLead,
+  trackCompleteRegistration,
+} from "@/components/meta-pixel-events";
 
 // Declarar tipos para Meta Pixel
 declare global {
@@ -66,13 +72,11 @@ export default function ObraSocialLeadsPage() {
   const [showSuccess, setShowSuccess] = useState(false);
 
   useEffect(() => {
-    // Track Meta Pixel ViewContent
-    if (typeof window !== "undefined" && window.fbq) {
-      window.fbq("track", "ViewContent", {
-        content_name: "Obra Social Leads Landing",
-        content_category: "Legal Services",
-      });
-    }
+    // Track Meta Pixel ViewContent (evento estándar)
+    trackViewContent({
+      content_name: "Obra Social Leads Landing",
+      content_category: "Legal Services",
+    });
 
     // Track Google Analytics
     if (typeof window !== "undefined" && window.gtag) {
@@ -86,13 +90,18 @@ export default function ObraSocialLeadsPage() {
   const handleWhatsApp = (source: string = "button") => {
     const utmData = getStoredUtmParameters() || {};
 
-    // Track Meta Pixel
-    if (typeof window !== "undefined" && window.fbq) {
-      window.fbq("track", "Lead", {
-        content_name: "WhatsApp Click",
-        source: source,
-      });
-    }
+    // Track Meta Pixel eventos estándar
+    trackContact({
+      content_name: "WhatsApp Click",
+      method: "whatsapp",
+      content_category: "Contact",
+    });
+    
+    trackLead({
+      content_name: "WhatsApp Click",
+      source: source,
+      content_category: "Contact",
+    });
 
     // Track Google Analytics
     if (typeof window !== "undefined" && window.gtag) {
@@ -111,13 +120,11 @@ export default function ObraSocialLeadsPage() {
   const handleFormSuccess = () => {
     setShowSuccess(true);
 
-    // Track Meta Pixel CompleteRegistration
-    if (typeof window !== "undefined" && window.fbq) {
-      window.fbq("track", "CompleteRegistration", {
-        content_name: "Obra Social Lead Form",
-        status: true,
-      });
-    }
+    // Track Meta Pixel CompleteRegistration (evento estándar)
+    trackCompleteRegistration({
+      content_name: "Obra Social Lead Form",
+      status: true,
+    });
   };
 
   const problemas = [

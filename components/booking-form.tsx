@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent } from "@/components/ui/card";
 import { Calendar } from "@/components/ui/calendar";
+import { trackSchedule, trackContact } from "@/components/meta-pixel-events";
 import {
   Select,
   SelectContent,
@@ -216,6 +217,14 @@ export function BookingForm() {
       setIsSubmitting(true);
       try {
         await sendInitialConsultationEmail(formData);
+        
+        // Track Meta Pixel evento estándar Contact
+        trackContact({
+          content_name: "Consulta Inicial Enviada",
+          method: "form",
+          content_category: formData.tipoConsulta,
+        });
+
         alert("¡Consulta enviada exitosamente!\n\nTu caso será evaluado por nuestro equipo y te contactaremos a la brevedad.\n\nGracias por confiar en Bustos & Roque.");
         setFormData({
           nombre: "",
@@ -245,6 +254,13 @@ export function BookingForm() {
     setIsSubmitting(true);
     try {
       await createGoogleCalendarEvent(formData);
+      
+      // Track Meta Pixel evento estándar Schedule
+      trackSchedule({
+        content_name: "Consulta Legal Reservada",
+        content_category: formData.tipoConsulta,
+      });
+
       alert(`¡Consulta reservada exitosamente!\n\n📅 Fecha: ${formData.fecha ? format(formData.fecha, 'dd/MM/yyyy', { locale: es }) : ''}\n🕐 Hora: ${formData.hora}\n👨‍💼 Abogado: ${formData.abogado}\n📍 Modalidad: ${formData.modalidad === 'presencial' ? 'Presencial' : 'Llamada'}\n📋 Tipo: ${consultationTypes.find(c => c.value === formData.tipoConsulta)?.label}\n\n✅ La consulta ha sido agregada al calendario del estudio\n📧 Recibirás un email de confirmación con los detalles\n🔔 Recordatorios automáticos 24h y 30min antes\n\n¡Gracias por confiar en Bustos & Roque!`);
       setFormData({
         nombre: "",
