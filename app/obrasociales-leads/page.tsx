@@ -142,28 +142,32 @@ export default function ObraSocialLeadsPage() {
 
   const faqs = [
     {
+      question: "¿Qué pasa si me niegan una prestación?",
+      answer: "Podes iniciar un amparo, solicitando una medida cautelar. Tenemos 15 años de experiencia en esto.",
+    },
+    {
+      question: "¿Que es una medida cautelar?",
+      answer: "Es una resolución anticipada en la cual el Juez ordena la cobertura que se está reclamando teniendo en cuenta la urgencia de tu caso.",
+    },
+    {
       question: "¿Cuánto tarda un amparo?",
-      answer: "En urgencias: 24-48hs. Regulares: 15-30 días.",
-    },
-    {
-      question: "¿Necesito abogado?",
-      answer: "Sí, aumenta significativamente las posibilidades de éxito.",
-    },
-    {
-      question: "¿Qué pasa si me niegan un medicamento?",
-      answer: "Podés iniciar un amparo. Tenemos experiencia en casos similares.",
-    },
-    {
-      question: "¿Tiene costo?",
-      answer: "Evaluación gratuita. Honorarios acordes a tu situación.",
-    },
-    {
-      question: "¿Puedo reclamar con deuda?",
-      answer: "Sí, el derecho a la salud es independiente de la situación de pago.",
+      answer: "APROXIMADAMENTE En urgencias: 24-48hs. Regulares: 15-30 días.",
     },
     {
       question: "¿Qué documentación necesito?",
-      answer: "Prescripción médica, negativa de la obra social, estudios y DNI.",
+      answer: "A evaluar según el caso.",
+    },
+    {
+      question: "¿Es necesaria la negativa expresa de cobertura?",
+      answer: "No. Podes iniciar incluso cuando hubiere omisión de respuesta.",
+    },
+    {
+      question: "¿Necesito un abogado?",
+      answer: "Si, en vía administrativa aumenta significativamente las posibilidades de éxito. En vía judicial es obligatorio",
+    },
+    {
+      question: "¿Tiene costo?",
+      answer: "Si. Analizamos y estudiamos el caso según su complejidad para elaborar un plan de trabajo que te asegure la representación legal de principio a fin.",
     },
   ];
 
@@ -270,7 +274,7 @@ export default function ObraSocialLeadsPage() {
                 </div>
                 <div className="flex items-center gap-1.5 px-3 py-1.5 bg-white/10 rounded-full backdrop-blur-sm border border-white/20 text-xs md:text-sm">
                   <CheckCircle className="h-4 w-4 text-blue-400" />
-                  <span>1.200+ casos</span>
+                  <span>600+ casos</span>
                 </div>
               </motion.div>
 

@@ -204,12 +204,16 @@ export function LeadForm({ onSuccess }: LeadFormProps) {
               value={formData.tipoProblema}
               onValueChange={(value) => handleInputChange("tipoProblema", value)}
             >
-              <SelectTrigger className="w-full h-11 md:h-12 bg-white/10 border-white/20 text-white text-sm md:text-base">
-                <SelectValue placeholder="Seleccioná un problema" />
+              <SelectTrigger className="w-full h-11 md:h-12 bg-white/15 border-white/30 text-white text-sm md:text-base hover:bg-white/20 focus:ring-2 focus:ring-yellow-500/50">
+                <SelectValue placeholder="Seleccioná un problema" className="text-white placeholder:text-gray-300" />
               </SelectTrigger>
-              <SelectContent>
+              <SelectContent className="bg-[#1a4a3e] border-white/20 backdrop-blur-xl text-white max-h-[300px]">
                 {TIPOS_PROBLEMA.map((problema) => (
-                  <SelectItem key={problema} value={problema}>
+                  <SelectItem 
+                    key={problema} 
+                    value={problema}
+                    className="text-white focus:bg-white/20 focus:text-white cursor-pointer"
+                  >
                     {problema}
                   </SelectItem>
                 ))}
@@ -233,12 +237,16 @@ export function LeadForm({ onSuccess }: LeadFormProps) {
               value={formData.obraSocial}
               onValueChange={(value) => handleInputChange("obraSocial", value)}
             >
-              <SelectTrigger className="w-full h-11 md:h-12 bg-white/10 border-white/20 text-white text-sm md:text-base">
-                <SelectValue placeholder="Seleccioná tu obra social o prepaga" />
+              <SelectTrigger className="w-full h-11 md:h-12 bg-white/15 border-white/30 text-white text-sm md:text-base hover:bg-white/20 focus:ring-2 focus:ring-yellow-500/50">
+                <SelectValue placeholder="Seleccioná tu obra social o prepaga" className="text-white placeholder:text-gray-300" />
               </SelectTrigger>
-              <SelectContent>
+              <SelectContent className="bg-[#1a4a3e] border-white/20 backdrop-blur-xl text-white max-h-[300px]">
                 {OBRAS_SOCIALES.map((obra) => (
-                  <SelectItem key={obra} value={obra}>
+                  <SelectItem 
+                    key={obra} 
+                    value={obra}
+                    className="text-white focus:bg-white/20 focus:text-white cursor-pointer"
+                  >
                     {obra}
                   </SelectItem>
                 ))}
