@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import Image from "next/image";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -32,6 +31,7 @@ import {
 import { getStoredUtmParameters } from "@/components/tracking";
 import Script from "next/script";
 import { AnimatedBackground } from "@/components/animated-background";
+import { SharedHeader } from "@/components/shared-header";
 import {
   trackViewContent,
   trackContact,
@@ -216,32 +216,11 @@ export default function ObraSocialLeadsPage() {
       <div className="min-h-screen bg-gradient-to-br from-[#0f2f26] via-[#153F35] to-[#1a4a3e] text-white relative overflow-hidden">
         <AnimatedBackground />
 
-        {/* Header con Logo */}
-        <motion.header
-          initial={{ y: -100, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.6 }}
-          className="sticky top-0 z-40 w-full backdrop-blur-xl bg-[#153F35]/90 border-b border-white/10 shadow-lg"
-        >
-          <div className="container max-w-7xl mx-auto flex items-center justify-center py-3 px-4">
-            <div className="flex items-center gap-3">
-              <Image
-                src="/images/logo-transparente.png"
-                alt="Estudio Bustos & Roque"
-                width={50}
-                height={50}
-                className="brightness-110"
-                priority
-              />
-              <span className="font-serif font-bold text-xl text-yellow-600">
-                Bustos & Roque
-              </span>
-            </div>
-          </div>
-        </motion.header>
+        {/* Header compartido */}
+        <SharedHeader />
 
         {/* Hero Section - Compacto */}
-        <section className="relative pt-8 pb-12 px-4 md:px-8">
+        <section className="relative pt-24 pb-12 px-4 md:px-8">
           <div className="container max-w-6xl mx-auto">
             <motion.div
               variants={containerVariants}
@@ -302,6 +281,15 @@ export default function ObraSocialLeadsPage() {
                 >
                   Evaluación gratis
                   <ArrowRight className="ml-2 h-5 w-5" />
+                </Button>
+                <Button
+                  onClick={() => {
+                    window.location.href = "/";
+                  }}
+                  className="w-full sm:w-auto bg-white/10 hover:bg-white/20 border border-white/30 text-white font-bold py-5 px-6 text-base rounded-xl shadow-2xl backdrop-blur-sm"
+                  size="lg"
+                >
+                  Ir a Inicio
                 </Button>
               </motion.div>
             </motion.div>

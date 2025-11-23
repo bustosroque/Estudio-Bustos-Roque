@@ -14,6 +14,7 @@ export function SharedHeader() {
     { name: "Inicio", href: "/" },
     { name: "Noticias", href: "/noticias" },
     { name: "Obras Sociales", href: "/obrasociales" },
+    { name: "Reclamos de Obra Social", href: "/obrasociales-leads" },
     { name: "Pensión Discapacidad", href: "/pension-discapacidad" },
   ];
 
