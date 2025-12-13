@@ -17,6 +17,18 @@ interface Noticia {
 
 const noticias: Noticia[] = [
   {
+    id: 5,
+    slug: "fallo-inconstitucionalidad-decreto-discapacidad",
+    titulo: "Fallo histórico: la Justicia declaró inconstitucional el decreto que suspendía la Ley de Emergencia en Discapacidad",
+    resumen:
+      "El Juzgado Federal de Campana declaró la inconstitucionalidad del artículo 2° del Decreto 681/2025 y ordenó la inmediata aplicación de la Ley 27.793. El Estudio Jurídico Bustos & Roque representó a dos agrupaciones en este amparo colectivo de trascendencia histórica.",
+    fecha: "2025-01-20",
+    autor: "Dr. Diego Bustos & Dr. José Roque",
+    imagen: "/images/FALLOJUDICIAL.png",
+    destacado: true,
+    categoria: "Derecho Constitucional",
+  },
+  {
     id: 4,
     slug: "agresion-sebastian-elcano-representacion-legal",
     titulo: "El Estudio Jurídico Bustos & Roque representa a la víctima de la brutal agresión en Sebastián Elcano",

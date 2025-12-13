@@ -1,12 +1,70 @@
 import type { ReactNode } from "react";
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
-import { Instagram } from "lucide-react";
+import { Instagram, Download, MessageCircle, FileText } from "lucide-react";
 import { SharedHeader } from "@/components/shared-header";
 
 // Simulación de datos (en CMS esto vendrá de una API o base de datos)
-const noticias = [
+interface NoticiaData {
+  slug: string;
+  titulo: string;
+  fecha: string;
+  autor: string;
+  abogado?: string;
+  abogadoImagen?: string;
+  imagen?: string;
+  categoria?: string;
+  contenido: string;
+  pdfUrl?: string;
+  tieneCta?: boolean;
+  fechaFallo?: string;
+  etiqueta?: string;
+}
+
+const noticias: NoticiaData[] = [
+  {
+    slug: "fallo-inconstitucionalidad-decreto-discapacidad",
+    titulo: "Fallo histórico: la Justicia declaró inconstitucional el decreto que suspendía la Ley de Emergencia en Discapacidad",
+    fecha: "2025-01-20",
+    fechaFallo: "2025-01-20",
+    autor: "Redacción Estudio Bustos & Roque",
+    abogado: "Dres. Diego Bustos y José Roque",
+    abogadoImagen: "/images/joseroqueavatar.png",
+    imagen: "/images/FALLOJUDICIAL.png",
+    categoria: "Derecho Constitucional",
+    etiqueta: "Amparo colectivo – Discapacidad",
+    pdfUrl: "/pdf/fallo-discapacidad.pdf",
+    tieneCta: true,
+    contenido: `En un fallo de trascendencia histórica, el Juzgado Federal de Campana declaró la inconstitucionalidad del artículo 2° del Decreto 681/2025, que disponía la suspensión de la ejecución de la Ley de Emergencia en Discapacidad 27.793. El tribunal hizo lugar al amparo colectivo presentado por el Estudio Jurídico Bustos & Roque y ordenó la inmediata aplicación de la ley, restableciendo los derechos de las personas con discapacidad en todo el país.
+
+**¿Qué resolvió la Justicia?**
+
+El fallo judicial, emitido por el Juzgado Federal de Campana, estableció de manera contundente que el artículo 2° del Decreto 681/2025 es inconstitucional por vulnerar principios fundamentales del orden republicano y los derechos de las personas con discapacidad. La sentencia ordenó la inmediata aplicación de la Ley 27.793 de Emergencia en Discapacidad, restableciendo así todos los derechos y prestaciones que la norma había establecido para este sector de la población.
+
+El tribunal consideró que el Poder Ejecutivo no puede, mediante un decreto, suspender o alterar una ley sancionada por el Congreso de la Nación, ya que ello implica una interferencia indebida entre poderes que altera el equilibrio republicano previsto en la Constitución Nacional.
+
+**¿Por qué es un fallo histórico?**
+
+Este fallo representa un hito en la defensa de los derechos de las personas con discapacidad por múltiples razones:
+
+1. **Impacto colectivo**: Al tratarse de un amparo colectivo, la sentencia beneficia a todas las personas con discapacidad en el país, no solo a los actores del caso. Esto significa que miles de familias recuperan sus derechos de manera inmediata.
+
+2. **Protección de derechos fundamentales**: El fallo reafirma que los derechos consagrados en la Ley 27.793 son de carácter fundamental y no pueden ser suspendidos mediante decretos presidenciales, garantizando así la seguridad jurídica y el respeto por los derechos humanos.
+
+3. **Precedente institucional**: La decisión establece un precedente importante sobre los límites del Poder Ejecutivo en relación con las leyes sancionadas por el Congreso, reforzando el principio de separación de poderes y la supremacía constitucional.
+
+4. **Importancia para las personas con discapacidad**: Este fallo garantiza la continuidad de prestaciones, coberturas y derechos esenciales para las personas con discapacidad y sus familias, que habían sido suspendidos por el decreto presidencial.
+
+**Nuestro rol en el caso**
+
+El Estudio Jurídico Bustos & Roque tuvo el honor de representar a dos agrupaciones en este amparo colectivo de trascendencia histórica. Nuestro equipo legal, encabezado por los Dres. Diego Bustos y José Roque, trabajó incansablemente en la presentación del amparo, argumentando los fundamentos constitucionales que finalmente fueron reconocidos por la Justicia.
+
+Desde el inicio del proceso, entendimos la gravedad de la situación y la importancia de garantizar que los derechos de las personas con discapacidad no fueran vulnerados por una medida administrativa. La estrategia jurídica desarrollada se basó en sólidos argumentos de derecho constitucional, destacando la alteración del orden republicano y la vulneración de derechos fundamentales.
+
+Este resultado consolida nuestra experiencia y compromiso en la defensa de los derechos humanos y constitucionales, demostrando que la acción legal efectiva puede lograr cambios significativos que benefician a toda la sociedad.`
+  },
   {
     slug: "agresion-sebastian-elcano-representacion-legal",
     titulo: "El Estudio Jurídico Bustos & Roque representa a la víctima de la brutal agresión en Sebastián Elcano",
@@ -258,7 +316,27 @@ const palabrasNegrita = [
   "precedente ejemplar",
   "violencia desmedida",
   "Este tipo de ataques no pueden quedar impunes",
-  "consecuencias penales"
+  "consecuencias penales",
+  // Nuevas palabras para el fallo de inconstitucionalidad
+  "Juzgado Federal de Campana",
+  "fallo histórico",
+  "inconstitucionalidad",
+  "artículo 2°",
+  "inmediata aplicación",
+  "restableciendo los derechos",
+  "vulneración de derechos",
+  "interferencia indebida",
+  "equilibrio republicano",
+  "amparo colectivo",
+  "sentencia",
+  "prestaciones",
+  "coberturas",
+  "medida administrativa",
+  "derechos humanos",
+  "seguridad jurídica",
+  "separación de poderes",
+  "supremacía constitucional",
+  "derechos fundamentales"
 ];
 
 function resaltarNegrita(texto: string) {
@@ -277,6 +355,37 @@ function resaltarNegrita(texto: string) {
 
 interface Props {
   params: { slug: string };
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { slug } = await params;
+  const noticia = noticias.find((n) => n.slug === slug);
+  
+  if (!noticia) {
+    return {
+      title: "Noticia no encontrada | Estudio Bustos & Roque",
+    };
+  }
+
+  const title = `${noticia.titulo} | Estudio Bustos & Roque`;
+  const description = noticia.contenido.substring(0, 160).replace(/\*\*/g, '').trim() + "...";
+
+  return {
+    title,
+    description,
+    openGraph: {
+      title,
+      description,
+      type: "article",
+      publishedTime: noticia.fecha,
+      authors: [noticia.autor],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+    },
+  };
 }
 
 export default async function NoticiaDetallePage({ params }: Props): Promise<ReactNode> {
@@ -300,13 +409,29 @@ export default async function NoticiaDetallePage({ params }: Props): Promise<Rea
         </div>
         {/* Badge y título */}
         <div className="mb-10 text-center">
+          {noticia.etiqueta && (
+            <span className="inline-block mb-3 px-4 py-2 bg-yellow-600/30 text-yellow-500 rounded-full text-sm font-bold tracking-wider border border-yellow-600/50">
+              {noticia.etiqueta}
+            </span>
+          )}
           <span className="inline-block mb-2 px-3 py-1 bg-yellow-600/20 text-yellow-600 rounded-full text-xs font-semibold tracking-wider">
             {noticia.categoria || "Noticia"}
           </span>
           <h1 className="text-4xl md:text-5xl font-serif font-bold text-yellow-600 mb-4">
             {noticia.titulo}
           </h1>
+          {noticia.slug === "fallo-inconstitucionalidad-decreto-discapacidad" && (
+            <p className="text-xl md:text-2xl text-gray-200 mb-4 max-w-3xl mx-auto leading-relaxed">
+              El Juzgado Federal de Campana hizo lugar a un amparo colectivo y ordenó la inmediata aplicación de la ley.
+            </p>
+          )}
           <div className="flex flex-col sm:flex-row gap-2 justify-center items-center text-gray-400 text-sm mb-2">
+            {noticia.fechaFallo && (
+              <>
+                <span>Fecha del fallo: {new Date(noticia.fechaFallo).toLocaleDateString('es-AR', { day: 'numeric', month: 'long', year: 'numeric' })}</span>
+                <span className="hidden sm:inline">|</span>
+              </>
+            )}
             <span>{new Date(noticia.fecha).toLocaleDateString()}</span>
             <span className="hidden sm:inline">|</span>
             <span>{noticia.autor}</span>
@@ -347,6 +472,54 @@ export default async function NoticiaDetallePage({ params }: Props): Promise<Rea
             <p key={idx} dangerouslySetInnerHTML={{ __html: resaltarNegrita(parrafo) }} />
           ))}
         </article>
+        
+        {/* Descarga del fallo PDF */}
+        {noticia.pdfUrl && (
+          <div className="mt-8 text-center">
+            <div className="bg-gradient-to-r from-yellow-500/20 to-yellow-600/20 border border-yellow-500/30 rounded-2xl p-6 md:p-8 shadow-xl">
+              <Download className="h-12 w-12 text-yellow-600 mx-auto mb-4" />
+              <h3 className="text-2xl font-bold text-white mb-2">Descargar fallo completo</h3>
+              <p className="text-gray-200 mb-6">Accedé al texto completo de la sentencia judicial en formato PDF</p>
+              <a
+                href={noticia.pdfUrl}
+                download
+                className="inline-flex items-center gap-2 bg-gradient-to-r from-yellow-500 to-yellow-600 hover:from-yellow-600 hover:to-yellow-700 text-white font-bold py-4 px-8 rounded-xl transition-all duration-300 transform hover:scale-105 shadow-xl"
+              >
+                <FileText className="h-5 w-5" />
+                Descargar fallo completo en PDF
+              </a>
+            </div>
+          </div>
+        )}
+
+        {/* CTA Legal */}
+        {noticia.tieneCta && (
+          <div className="mt-12 bg-gradient-to-br from-green-500/20 to-emerald-500/20 border border-green-400/30 rounded-2xl p-8 md:p-10 shadow-2xl">
+            <div className="text-center mb-6">
+              <h3 className="text-2xl md:text-3xl font-bold text-white mb-3">
+                Si este fallo te afecta o necesitás asesoramiento legal, podemos ayudarte
+              </h3>
+            </div>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-stretch max-w-2xl mx-auto">
+              <a
+                href="https://wa.me/5493513199098?text=Hola, me gustaría consultar sobre el fallo de inconstitucionalidad del decreto de discapacidad o necesito asesoramiento legal."
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex-1 bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white font-bold py-4 px-6 rounded-xl transition-all duration-300 transform hover:scale-105 shadow-xl flex items-center justify-center gap-2"
+              >
+                <MessageCircle className="h-5 w-5" />
+                Consultar por WhatsApp
+              </a>
+              <a
+                href="/"
+                className="flex-1 bg-gradient-to-r from-yellow-500 to-yellow-600 hover:from-yellow-600 hover:to-yellow-700 text-white font-bold py-4 px-6 rounded-xl transition-all duration-300 transform hover:scale-105 shadow-xl flex items-center justify-center gap-2"
+              >
+                <FileText className="h-5 w-5" />
+                Solicitar asesoramiento legal
+              </a>
+            </div>
+          </div>
+        )}
         {/* Navegación inferior */}
         <div className="mt-12 flex flex-col sm:flex-row justify-between items-center gap-4">
           <Link
